@@ -7,14 +7,14 @@ class Home extends Component {
   render() {
     return (
       <section className="home-container">
-        <div className="banner">
+        <div className="overlay">
           <div className="brand">
-            <h1>Router</h1><img src={pointer} alt="pointer"/>
-            <p>Adventure awaits</p>        
+            <h1 className="brand">Router</h1><img className='pointer' src={pointer} alt="pointer"/>
+            <p className="tagline">Adventure awaits</p>        
           </div>
           <div>
             <Link className="button" to='/signup'>Signup</Link>
-            <Link className="button login" to='/login'>Login</Link>
+            <Link id="login" className="button" to='/login'>Login</Link>
           </div>
         </div>
       </section>

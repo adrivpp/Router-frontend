@@ -4,8 +4,13 @@ class TravelService {
   constructor() {
     this.travel = axios.create({
       baseURL: process.env.REACT_APP_BACKEND_URL,
-      withCredentials: true // only beacause we want to share cookies with the backend server otherwise set it to false
+      withCredentials: true 
     })
+  }
+
+  findAll() {
+    return this.travel.get('/travels')
+      .then(({ data }) => data);      
   }
 
   create(travel) {   
@@ -16,6 +21,11 @@ class TravelService {
   findOne(id) {
     return this.travel.get(`/travels/${id}/details`) 
       .then(({data}) => data);
+  }
+
+  addActivities(id, activity) {
+    return this.travel.put(`/travels/${id}/activities`, activity)
+      .then(({data}) => data)
   }
 
   findByCategory(category) {
@@ -37,9 +47,6 @@ class TravelService {
     return this.travel.delete(`/travels/${id}`)
       .then(({data}) => data)
   }
-
-
-
 }
 
 const travelService = new TravelService();

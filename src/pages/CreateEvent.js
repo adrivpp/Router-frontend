@@ -7,7 +7,7 @@ class CreateEvent extends Component {
   handleSubmit =(travelData) => {    
     travelService.create(travelData)
     .then((travel) => {
-      return this.props.history.push(`/travels/${travel._id}`);  
+      return this.props.history.push(`/travels/${travel._id}/edit`);  
     })
     .catch(err => console.log(err))
   }

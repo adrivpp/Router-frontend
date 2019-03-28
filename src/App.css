@@ -1,0 +1,139 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+html {
+  width: 100vw;
+  height: 100vh;
+  padding: 0;
+  margin: 0;
+}
+
+/* Gray background overlay */
+.overlay {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: column;
+  background: rgba(72, 75, 92, 0.6);
+  width: 100%;
+  height: 100vh;
+}
+
+/* create page */
+.create {
+  background-image: url('./images/map.jpg');
+  background-size: cover;
+  background-position-x: center;
+}
+
+/* create form */
+.create-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 60vh;
+  justify-content: space-between;
+  width: 65vw;
+}
+
+/* button */
+.button {
+  background: #00C6AE;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  width: 70vw;
+  height: 6vh;
+  border-radius: 18px;
+  color: white;
+  margin-bottom: 7vh;
+  border: none;
+}
+
+.create-button {
+  width: 80%;
+  margin-bottom: 0;   
+}
+
+/* inputs */
+.input {
+  width: 100%;
+  background: none;
+  border: none;
+  border-bottom: 2px solid white;  
+  padding-bottom: 5px;
+  color: white;
+}
+
+input::placeholder {
+  color: white;
+}
+
+.select {
+  background: black;
+}
+
+/* travel details */
+.travel-info {
+  background: white;
+  position: fixed;
+  bottom: 0;
+  min-height: 70vh;
+  width: 100%;
+  border-radius: 50px 50px 0 0;
+  box-shadow: 2px; 
+  box-shadow: 0px 0px 6px #999;
+}
+
+/* travels card */
+.travel-banner {
+  background-size: contain;
+  background-repeat: no-repeat;  
+  height: 100vh;
+}
+
+
+.card-container {
+  width: 100%;
+  margin-bottom: 30px;  
+}
+
+.card-image {
+  height: 24vh;
+}
+
+.card-image img {
+  width: 100%;
+  height: 100%;
+}
+
+.card-info {
+  display: flex;
+  justify-content: space-around;
+  box-shadow: 0px 2px 6px #999;
+}
+
+/* travels container */
+.list-container {
+  width: 80vw;
+  margin: 0 auto;
+}
+
+/* search bar */
+.search-bar {
+  width: 90vw;
+  background: white;
+
+}
+.search-bar input {
+  background: #EFEFEF;
+  display: block;
+  width: 100%;
+  margin: 20px auto;  
+  border: none;
+  height: 5vh;
+  margin-bottom: 40px;
+}
+
