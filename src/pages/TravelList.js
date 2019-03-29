@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import travelService from '../lib/travel-service';
 import TravelCard from '../components/TravelCard';
 import TravelDetails from './TravelDetails';
-// import axios from 'axios'
 
 class TravelList extends Component {
 
@@ -10,27 +9,17 @@ class TravelList extends Component {
     travels:  [],
     status: 'loadind',
     search: '',
-    // image: 'https://picsum.photos/458/354'
-  }
-  
-  // api =() => {
-  //   axios.get('https://api.unsplash.com/search/photos/?page=1&per_page=10&query=mountain&client_id=ceb8ab68601c5e11d0d7147805364b17b5fcbb184ff205e7c463edbcd9be55bf')
-  //   .then((response)=> {      
-  //     console.log(response.data)
-  //     this.setState({
-  //       image: response.data.results[1].urls.small
-  //     })
-  //   })
-  // }
-  
+    hasClick: false,
+    id: ''   
+  }  
+
   componentDidMount() {    
     travelService.findAll()
     .then((travels) => {
       this.setState({
         travels,
         status: 'loaded', 
-        hasClick: false,
-        id: ''       
+        hasClick: false,        
       })
     })
     .catch((err) => {
@@ -56,8 +45,7 @@ class TravelList extends Component {
   
   handleClick =(id) => {
     travelService.findOne(id)
-    .then(() => {
-      this.props.history.push(`/travels/${id}`)    
+    .then(() => {      
       this.setState({
         hasClick: true,
         id

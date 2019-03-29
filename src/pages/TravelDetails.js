@@ -2,9 +2,33 @@ import React, { Component } from 'react';
 import travelService from '../lib/travel-service';
 import DetailCard from '../components/DetailCard';
 import ActivitiesForm from '../components/ActivitiesForm';
-import { withAuth } from '../providers/AuthProvider';
+import Owner from '../components/Owner';
 
-class TravelDetails extends Component {
+export const DetailContext = React.createContext();
+
+const { Provider, Consumer }  = DetailContext;
+
+export const withAuth = (Comp) => {
+  return class WithAuth extends Component {
+    render() {
+      return (
+        <Consumer>
+          {(authStore) => {
+            return <Comp 
+              isLogged={authStore.isLogged}
+              user={authStore.user}
+              logout={authStore.logout}
+              login={authStore.login}
+              signup={authStore.signup}
+              {...this.props} />
+          }}
+        </Consumer>
+      )
+    }    
+  }
+}
+
+export default class DetailsProvider extends Component {
 
   state = {
     travel: {},
@@ -50,14 +74,7 @@ class TravelDetails extends Component {
         return <li key={`id-${index}`}>{activity}</li>
       })
     }    
-  }
-
-  renderForm =() => {
-    const { user } = this.props     
-    return (
-      user._id === this.state.travel.owner && <ActivitiesForm onAdd={this.handleAdd} />  
-    )
-  }
+  } 
 
   render() {    
     switch (this.state.status) {      
@@ -65,13 +82,16 @@ class TravelDetails extends Component {
         return (          
           <div className="travel-info">
             <i onClick={this.props.onClose} className="fas fa-times"></i>
-            {this.renderForm()}
+            <Owner travel={this.state.travel}>
+              <ActivitiesForm onAdd={this.handleAdd} />
+            </Owner>
             <DetailCard 
             renderList={this.renderList} 
             travel={this.state.travel} 
-            handleAdd={()=>this.handleAdd()}            
+            handleAdd={()=>this.handleAdd()}                        
             />              
-          </div>                
+          </div>   
+
         )
       case 'hasError': 
         return (
@@ -83,4 +103,4 @@ class TravelDetails extends Component {
   }
 }
 
-export default withAuth(TravelDetails);
+export default TravelDetails;

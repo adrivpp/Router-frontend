@@ -4,10 +4,10 @@ import travelService from '../lib/travel-service';
 
 class CreateEvent extends Component {
 
-  handleSubmit =(travelData) => {    
+  handleSubmit =(travelData) => {        
     travelService.create(travelData)
     .then((travel) => {
-      return this.props.history.push(`/travels/${travel._id}/edit`);  
+      return this.props.history.push('/travels');  
     })
     .catch(err => console.log(err))
   }

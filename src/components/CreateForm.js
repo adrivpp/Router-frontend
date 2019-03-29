@@ -15,6 +15,8 @@ class CreateForm extends Component {
     startPoint: '', 
     endPoint: '',     
   }
+
+  //todo: handle errors
   
   // componentDidMount() {
   //   unsplash.search.photos("dogs", 1)    
@@ -45,7 +47,7 @@ class CreateForm extends Component {
     })
   }
 
-
+// todo constant options
   render() {
     return (
       <section className="create">      
