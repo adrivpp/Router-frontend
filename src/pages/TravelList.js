@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import travelService from '../lib/travel-service';
 import TravelCard from '../components/TravelCard';
 import TravelDetails from './TravelDetails';
+import ShowDetails from '../components/ShowDetails';
 
 class TravelList extends Component {
 
@@ -10,7 +11,7 @@ class TravelList extends Component {
     status: 'loadind',
     search: '',
     hasClick: false,
-    id: ''   
+    singleTravel: {}
   }  
 
   componentDidMount() {    
@@ -41,20 +42,18 @@ class TravelList extends Component {
       hasClick: false
     })
     this.props.history.push('/travels/')
-  }
-  
-  handleClick =(id) => {
-    travelService.findOne(id)
-    .then(() => {      
-      this.setState({
-        hasClick: true,
-        id
-      })  
-    })
-  }
+  } 
 
-  renderDetails =() => {
-    return this.state.hasClick && <TravelDetails id={this.state.id} onClose={this.handleClose}/>
+  handleClick =(id) => {    
+    travelService.findOne(id) 
+      .then((travel) => {
+        this.props.history.push(`/travels/${id}`)
+        this.setState({
+          hasClick: true,
+          singleTravel: travel
+        })
+      })
+      .catch(err => console.log(err))
   }
   
   renderCard =() => {
@@ -78,7 +77,9 @@ class TravelList extends Component {
             <section className="list-container">
               {this.renderCard()}
             </section>
-            {this.renderDetails()}
+            <ShowDetails hasClick={this.state.hasClick}>
+              <TravelDetails travel={this.state.singleTravel} onClose={this.handleClose}/>
+            </ShowDetails>
           </>
         )
       case 'hasError': 

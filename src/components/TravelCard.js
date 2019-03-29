@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 
 class TravelCard extends Component {
   render() {
-    const { _id, imageUrl, startPoint, endPoint, name, owner } = this.props.travel
+    const { _id, imageUrl, startPoint, endPoint, name } = this.props.travel
     return (
       <div onClick={() => this.props.onDetails(_id)} className="card-container">
         <div className="card-image">

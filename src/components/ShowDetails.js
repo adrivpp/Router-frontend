@@ -1,13 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class ShowDetails extends Component {
-  render() {
-    return (
-      <div>
-        
-      </div>
-    );
-  }
+const ShowDetails =(props) => {   
+  return (
+    <div>
+      {props.hasClick && props.children}
+    </div>
+  );
 }
 
 export default ShowDetails;

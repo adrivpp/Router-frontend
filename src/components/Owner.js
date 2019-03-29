@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { withAuth } from '../providers/AuthProvider';
 
 class Owner extends Component {
-  render() {
+  render() {    
     const { user, travel } = this.props
     return (
       <div>
