@@ -4,25 +4,49 @@ import travelService from '../lib/travel-service';
 
 class NotificationsCard extends Component {
 
-  // state = {
-  //   travels: []
-  // }
+  state = {
+    travels: [],
+    status: 'loading'
+  }
+
+  handleClick =(request) => {
+    console.log('hola', request)
+    travelService.denyRequest(this.state.travels[0]._id, request)
+    .then(() => {
+      this.findNotifications()
+    })
+    .catch(err => console.log(err))
+  }
+
+  findNotifications = () => {    
+    travelService.findNotifications(this.props.user.notifications)
+    .then((travels) =>{
+      this.setState({
+        travels,
+        status: 'loaded'
+      })   
+    })
+    .catch(err => console.log(err))
+  }
 
   componentDidMount() {   
-    const arrayIds = this.props.user.notifications      
-    travelService.findNotifications(arrayIds)
-    .then((travels) =>{
-      console.log(travels)
-      })   
-    .catch(err => console.log(err))
+    this.findNotifications()
   }
   
   render() {
-    return (
-      <div>
-        hola
-      </div>
-    );
+    
+    const { travels, status } = this.state
+    switch (status) {
+      case 'loading':
+      return <p>Loading...</p>       
+      default:
+      return (
+        <div>
+          <h1>{travels[0].request[0].username}</h1>
+          <button onClick={() => this.handleClick(travels[0].request[0]._id)}>deny</button>
+        </div>
+      )
+    }
   }
 }
 

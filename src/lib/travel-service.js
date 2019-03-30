@@ -19,7 +19,7 @@ class TravelService {
   }
 
   findNotifications(arrayIds) {
-    return this.travel.get('/travels/notifications', arrayIds)
+    return this.travel.post('/travels/notifications', arrayIds)
       .then(({ data }) => data); 
   }
 
@@ -50,6 +50,11 @@ class TravelService {
 
   bookTrip(id) {
     return this.travel.put(`/travels/${id}/book`)
+      .then(({data}) => data)
+  }
+
+  denyRequest(id, request) {
+    return this.travel.put(`/travels/${id}/deny`, request)
       .then(({data}) => data)
   }
 

@@ -21,6 +21,7 @@ class CreateForm extends Component {
     if(this.state.endPoint !== '')
     axios.get(`https://api.unsplash.com/search/photos/?page=1&per_page=10&query=${this.state.category}&client_id=${applicationId}`)
     .then((response) => {
+      console.log(response)
       if(response.data.results.length > 0) {
         this.setState({
         imageUrl: response.data.results[Math.floor(Math.random()*response.data.results.length)].urls.regular
@@ -29,7 +30,7 @@ class CreateForm extends Component {
     })    
   }
 
-  handleChange =(e) => {
+  handleChange =(e) => {    
     const {name, value} = e.target
     this.setState({
       [name]: value      
@@ -62,7 +63,7 @@ class CreateForm extends Component {
         <div className="overlay">          
           <form onSubmit={this.handleSubmit} className="create-form">
             <input className="input" onChange={this.handleChange} type="text" name="name" value={this.state.name} placeholder="Name"/>
-            <select className="input select"  onChange={this.handleChange} name="mountain">
+            <select className="input select" name="category" onChange={this.handleChange} >
               {this.handleOptions()}            
             </select>
             <input className="input" onChange={this.handleChange} type="date" name="date" value={this.state.date}/>
