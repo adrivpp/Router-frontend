@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import {Switch} from 'react-router-dom'
+import { Switch } from 'react-router-dom'
 import PrivateRoute from './components/PrivateRoute';
 import AnonRoute from './components/AnonRoute';
 import Profile from './pages/Profile';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
 import AuthProvider from './providers/AuthProvider';
+import TravelProvider from './providers/TravelsProvider';
 import Home from './pages/Home';
 import { Route } from 'react-router-dom';
 import CreateEvent from './pages/CreateEvent';
@@ -22,8 +23,10 @@ class App extends Component {
             <AnonRoute exact path="/signup" component={Signup} />
             <AnonRoute exact path="/login" component={Login} />
             <PrivateRoute exact path="/profile" component={Profile} />
-            <PrivateRoute exact path='/travels/new' component={CreateEvent}/>            
-            <Route path='/travels' component={TravelList}/>                         
+            <PrivateRoute exact path='/travels/new' component={CreateEvent}/>    
+            <TravelProvider>      
+              <Route path='/travels' component={TravelList}/>     
+            </TravelProvider>                      
           </Switch>
         </div>
       </AuthProvider>

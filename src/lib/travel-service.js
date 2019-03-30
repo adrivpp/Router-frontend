@@ -13,6 +13,16 @@ class TravelService {
       .then(({ data }) => data);      
   }
 
+  findOwned() {
+    return this.travel.get('/travels/owned')
+      .then(({ data }) => data); 
+  }
+
+  findTravelsBooked() {
+    return this.travel.get('/travels/booked')
+      .then(({ data }) => data); 
+  }
+
   create(travel) {   
     return this.travel.post('/travels', travel)
       .then(({ data }) => data);      

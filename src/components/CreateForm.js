@@ -27,7 +27,6 @@ class CreateForm extends Component {
         })
       }
     })    
-
   }
 
   handleChange =(e) => {

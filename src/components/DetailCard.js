@@ -4,6 +4,15 @@ import NotOwner from './NotOwner';
 
 class DetailCard extends Component {   
 
+  renderList =() => {
+    const { activities } = this.props.travel ;        
+    if (activities.length > 0) {      
+      return activities.map((activity, index) => {         
+        return <li key={`id-${index}`}>{activity}</li>
+      })
+    }    
+  } 
+
   render() {    
     const { _id, name, seats, startPoint, endPoint } = this.props.travel;
     return (
@@ -13,7 +22,7 @@ class DetailCard extends Component {
         <p>{startPoint}</p>
         <p>{endPoint}</p>
         <ul>
-          {this.props.renderList()}
+          {this.renderList()}
         </ul>     
         <NotOwner travel={this.props.travel}>
           <BookButton id={_id}/>

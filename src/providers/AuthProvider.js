@@ -81,7 +81,7 @@ export default class AuthProvider extends Component {
         this.setState({ 
           isLogged: false,
           user: {},
-          status: 'loaded'
+          status: 'hasError'
         });
       })
   }
