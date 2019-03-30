@@ -9,7 +9,6 @@ import AuthProvider from './providers/AuthProvider';
 import Home from './pages/Home';
 import { Route } from 'react-router-dom';
 import CreateEvent from './pages/CreateEvent';
-import TravelDetails from './pages/TravelDetails';
 import TravelList from './pages/TravelList';
 import './App.css'
 
@@ -19,12 +18,12 @@ class App extends Component {
       <AuthProvider>
         <div className="container">         
           <Switch>
-            <Route exact path="/" component={Home}/>
+            <Route exact path="/" component={Home}/>            
             <AnonRoute exact path="/signup" component={Signup} />
             <AnonRoute exact path="/login" component={Login} />
             <PrivateRoute exact path="/profile" component={Profile} />
             <PrivateRoute exact path='/travels/new' component={CreateEvent}/>            
-            <Route path='/travels' component={TravelList}/>                 
+            <Route path='/travels' component={TravelList}/>                         
           </Switch>
         </div>
       </AuthProvider>

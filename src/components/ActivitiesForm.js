@@ -12,7 +12,7 @@ class ActivitiesForm extends Component {
   }
 
   handleSubmit =(e) => {
-    e.preventDefault();
+    e.preventDefault();    
     this.props.onAdd(this.state)
     this.setState({
       activity: ''

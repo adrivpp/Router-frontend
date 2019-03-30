@@ -1,20 +1,15 @@
 import React, { Component } from 'react';
 
-
 class TravelCard extends Component {
-  render() {
+  render() {    
     const { _id, imageUrl, startPoint, endPoint, name } = this.props.travel
     return (
       <div onClick={() => this.props.onDetails(_id)} className="card-container">
-        <div className="card-image">
-          <img src={imageUrl} alt={name}></img>
-        </div>
-        <div className="card-info">
-          <div>
-            <p>{startPoint}</p>
-            <p>{endPoint}</p>
-          </div>
-          <h2>{name}</h2>
+        <img src={imageUrl} alt={name}></img>        
+        <div className="card-info">         
+          <h3>{name}</h3>
+          <p>{startPoint}</p>
+          <p>{endPoint}</p>         
         </div>
       </div>
     );

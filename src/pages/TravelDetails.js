@@ -10,9 +10,9 @@ class TravelDetails extends Component {
     travel: this.props.travel    
   }
   
-  handleAdd =(activity) => {    
-    const { id } = this.props     
-    travelService.addActivities(id, activity)
+  handleAdd =(activity) => {        
+    const { _id } = this.props.travel       
+    travelService.addActivities(_id, activity)
     .then((travel) => {                
       this.setState({
         travel

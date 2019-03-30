@@ -3,6 +3,8 @@ import travelService from '../lib/travel-service';
 import TravelCard from '../components/TravelCard';
 import TravelDetails from './TravelDetails';
 import ShowDetails from '../components/ShowDetails';
+import Navbar from '../components/Navbar';
+import Activities from '../components/Activities';
 
 class TravelList extends Component {
 
@@ -11,10 +13,10 @@ class TravelList extends Component {
     status: 'loadind',
     search: '',
     hasClick: false,
-    singleTravel: {}
+    singleTravel: {}    
   }  
 
-  componentDidMount() {    
+  findAll =() => {
     travelService.findAll()
     .then((travels) => {
       this.setState({
@@ -30,6 +32,10 @@ class TravelList extends Component {
       })
     })
   }
+
+  componentDidMount() {       
+    this.findAll()
+  }
   
   handleSearch =(e) => {
     this.setState({
@@ -40,9 +46,18 @@ class TravelList extends Component {
   handleClose =() => {
     this.setState({
       hasClick: false
-    })
-    this.props.history.push('/travels/')
+    })    
+    this.props.history.push('/travels')
   } 
+
+  handleActivities =(activity) => {    
+    const filter = this.state.travels.filter((travel) => {
+      return travel.activities.indexOf(activity) !== -1
+      })
+    this.setState({
+      travels: filter
+    })
+  }
 
   handleClick =(id) => {    
     travelService.findOne(id) 
@@ -70,16 +85,20 @@ class TravelList extends Component {
     switch (this.state.status) {      
       case 'loaded':
         return (
-          <>          
+          <>
+          <section className="travels-cotainer">                      
             <div className="search-bar">
               <input onChange={this.handleSearch} type="text" name="search" value={this.state.search} placeholder="Search by starting point"/>
-            </div>
+            </div>            
+            <Activities travels={this.state.travels} onActivity={this.handleActivities} onGetAll={this.findAll}/>
             <section className="list-container">
               {this.renderCard()}
             </section>
+          </section>
             <ShowDetails hasClick={this.state.hasClick}>
               <TravelDetails travel={this.state.singleTravel} onClose={this.handleClose}/>
             </ShowDetails>
+            <Navbar />            
           </>
         )
       case 'hasError': 
@@ -87,7 +106,7 @@ class TravelList extends Component {
           <p>error</p>
         )
       default:
-      return <p>loadind</p>
+      return <p>loading...</p>
     }
   }
 }
