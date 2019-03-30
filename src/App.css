@@ -203,3 +203,24 @@ input::placeholder {
 .all-tag {
   background: #434343;
 }
+
+/* notifications  */
+.fa-bell, .fa-envelope-open {
+  position: relative;
+}
+
+.badge {
+  position: absolute;
+  background: #00C6AE;
+  border-radius: 100%;
+  width: 80%;
+  text-align: center;
+  top: -12px;
+  left: 10px;  
+  color: white;
+  font-size: 16px;
+  padding: 1vw;
+  font-weight: bold;
+}
+
+

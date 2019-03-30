@@ -18,6 +18,11 @@ class TravelService {
       .then(({ data }) => data); 
   }
 
+  findNotifications(arrayIds) {
+    return this.travel.get('/travels/notifications', arrayIds)
+      .then(({ data }) => data); 
+  }
+
   findTravelsBooked() {
     return this.travel.get('/travels/booked')
       .then(({ data }) => data); 

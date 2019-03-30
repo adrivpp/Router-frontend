@@ -36,7 +36,7 @@ class TravelProvider extends Component {
     travelService.findAll()
     .then((travels) => {
       this.setState({
-        travels,
+        travels: travels,
         status: 'loaded', 
         hasClick: false,        
       })

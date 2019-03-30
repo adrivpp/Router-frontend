@@ -31,7 +31,7 @@ export default class AuthProvider extends Component {
   state = {
     isLogged: false,
     user: {},
-    status: 'loading'
+    status: 'loading',        
   }
 
   setUser = (user) => {
@@ -96,7 +96,7 @@ export default class AuthProvider extends Component {
         return (
           <Provider value={
             { isLogged,
-              user,
+              user,              
               logout: this.logoutUser, 
               login: this.loginUser,
               signup: this.signupUser,

@@ -19,7 +19,7 @@ class CreateForm extends Component {
   
   getRandomPicture =()=> {    
     if(this.state.endPoint !== '')
-    axios.get(`https://api.unsplash.com/search/photos/?page=1&per_page=10&query=${this.state.endPoint}&client_id=${applicationId}`)
+    axios.get(`https://api.unsplash.com/search/photos/?page=1&per_page=10&query=${this.state.category}&client_id=${applicationId}`)
     .then((response) => {
       if(response.data.results.length > 0) {
         this.setState({
@@ -62,7 +62,7 @@ class CreateForm extends Component {
         <div className="overlay">          
           <form onSubmit={this.handleSubmit} className="create-form">
             <input className="input" onChange={this.handleChange} type="text" name="name" value={this.state.name} placeholder="Name"/>
-            <select className="input select"  onChange={this.handleChange} name="category">
+            <select className="input select"  onChange={this.handleChange} name="mountain">
               {this.handleOptions()}            
             </select>
             <input className="input" onChange={this.handleChange} type="date" name="date" value={this.state.date}/>
