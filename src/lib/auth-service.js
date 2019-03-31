@@ -8,6 +8,11 @@ class AuthService {
     })
   }
 
+  update(username) {
+    return this.auth.get('/auth/updatedme', username)
+      .then(({ data }) => data);
+  }
+
   signup(user) {
     const { username, password } = user;
     return this.auth.post('/auth/signup', {username, password})

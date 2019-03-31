@@ -3,18 +3,25 @@ import travelService from '../lib/travel-service';
 
 class BookButton extends Component {
 
+  state = {
+    isBooked: false
+  }
+
   handleClick =() => {
     travelService.bookTrip(this.props.id) 
-      .then((response) => {
-        console.log(response)
+      .then(() => {
+        this.setState({
+          isBooked: true
+        })
       })
       .catch(err => console.log(err))
   }
 
-
   render() {
     return (
-      <button onClick={this.handleClick}>Book travel</button>
+      <button className="button" onClick={this.handleClick}>
+        {this.state.isBooked ? 'Booked' : 'Book'}
+      </button>
     );
   }
 }

@@ -20,8 +20,7 @@ class CreateForm extends Component {
   getRandomPicture =()=> {    
     if(this.state.endPoint !== '')
     axios.get(`https://api.unsplash.com/search/photos/?page=1&per_page=10&query=${this.state.category}&client_id=${applicationId}`)
-    .then((response) => {
-      console.log(response)
+    .then((response) => {      
       if(response.data.results.length > 0) {
         this.setState({
         imageUrl: response.data.results[Math.floor(Math.random()*response.data.results.length)].urls.regular

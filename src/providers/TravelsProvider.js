@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import travelService from '../lib/travel-service';
 import { withRouter } from 'react-router-dom';
+import Loader from '../components/Loader';
 export const TravelContext = React.createContext();
+
 
 
 const { Provider, Consumer }  = TravelContext;
@@ -106,7 +108,7 @@ class TravelProvider extends Component {
     const { travels, status,  search, hasClick, singleTravel } = this.state
     switch (status) {      
       case 'loading':
-        return <p>loading...</p>
+        return <Loader/>
       case 'hasError': 
         return <p>error</p>        
       default:

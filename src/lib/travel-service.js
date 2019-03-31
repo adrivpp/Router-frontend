@@ -53,10 +53,16 @@ class TravelService {
       .then(({data}) => data)
   }
 
-  denyRequest(id, request) {
-    return this.travel.put(`/travels/${id}/deny`, request)
+  denyRequest(id, invitedId) {
+    return this.travel.put(`/travels/${id}/deny`, {invitedId})
       .then(({data}) => data)
   }
+
+  agreeRequest(id, invitedId) {
+    return this.travel.put(`/travels/${id}/agree`, { invitedId })
+      .then(({data}) => data)
+  }
+  
 
   unbookTrip(id) {
     return this.travel.put(`/travels/${id}/unbook`)
