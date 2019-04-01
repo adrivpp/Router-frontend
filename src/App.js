@@ -12,6 +12,7 @@ import { Route } from 'react-router-dom';
 import CreateEvent from './pages/CreateEvent';
 import TravelList from './pages/TravelList';
 import './App.css'
+import TravelDetails from './pages/TravelDetails';
 
 class App extends Component {
   render() {
@@ -21,11 +22,12 @@ class App extends Component {
           <Switch>
             <Route exact path="/" component={Home}/>            
             <AnonRoute exact path="/signup" component={Signup} />
-            <AnonRoute exact path="/login" component={Login} />
-            <PrivateRoute exact path="/profile" component={Profile} />
-            <PrivateRoute exact path='/travels/new' component={CreateEvent}/>    
+            <AnonRoute exact path="/login" component={Login} />            
+            <PrivateRoute exact path="/travels/new" component={CreateEvent}/>    
             <TravelProvider>      
-              <Route path='/travels' component={TravelList}/>     
+              <PrivateRoute path="/profile" component={Profile} />              
+              <Route path="/travels" component={TravelList}/>   
+              {/* <Route exact path="/travels/:id" component={TravelDetails}/> */}
             </TravelProvider>                      
           </Switch>
         </div>

@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
+import { withTravel } from '../providers/TravelsProvider';
 
 class TravelCard extends Component {
+
+  handleClick=() => {
+    console.log(this.props)
+  }
+
   render() {    
     const { _id, imageUrl, startPoint, endPoint, name } = this.props.travel
     return (
@@ -16,4 +22,4 @@ class TravelCard extends Component {
   }
 }
 
-export default TravelCard;
+export default withTravel(TravelCard);

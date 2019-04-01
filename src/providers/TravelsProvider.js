@@ -1,10 +1,9 @@
+    
 import React, { Component } from 'react';
 import travelService from '../lib/travel-service';
 import { withRouter } from 'react-router-dom';
 import Loader from '../components/Loader';
 export const TravelContext = React.createContext();
-
-
 
 const { Provider, Consumer }  = TravelContext;
 
@@ -61,7 +60,7 @@ class TravelProvider extends Component {
     this.setState({
       hasClick: false
     })    
-    this.props.history.push('/travels')
+    //this.props.history.push('/travels')
   } 
 
   handleAdd =(activity, id) => {            
@@ -85,7 +84,7 @@ class TravelProvider extends Component {
   handleClick =(id) => {       
     travelService.findOne(id) 
       .then((travel) => {
-        this.props.history.push(`/travels/${id}`)
+        //this.props.history.push(`/travels/${id}`)
         this.setState({
           hasClick: true,
           singleTravel: travel
@@ -125,7 +124,8 @@ class TravelProvider extends Component {
               close: this.handleClose, 
               onSearch: this.handleSearch, 
               getAll: this.findAll,
-              addActivities: this.handleAdd
+              addActivities: this.handleAdd,
+              handleDetails: this.handleClick
             }} >
             {this.props.children}
           </Provider>

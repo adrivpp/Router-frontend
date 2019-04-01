@@ -40,6 +40,7 @@ h1 {
   height: 100vh;
 }
 
+
 /* create page */
 .create {
   background-image: url('./images/map.jpg');
@@ -122,6 +123,7 @@ h1 {
   width: 100%;
   column-count: 2;
   column-gap: 15px;   
+  margin-bottom: 10vh;
 }
 
 
@@ -355,3 +357,57 @@ input {
   font-size: 14px;
 }
 
+
+/* profile */
+
+.user-banner {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;  
+  min-height: 15vh; 
+  padding-bottom: 10px; 
+}
+
+hr {
+  width: 80%;
+  margin: 0 auto;
+}
+
+
+.user-banner img {
+  width: 20%;
+  border-radius: 100%;
+}
+
+.owned-travels {
+  display: flex;  
+  align-items: center;
+  margin-bottom: 20px;
+  overflow-x: scroll;
+  overflow-y: hidden;  
+  white-space:nowrap;    
+  height: 25vh;
+  padding: 5px;
+}
+
+.owned-travels img {
+  width: 115px; 
+  height: 80%; 
+}
+
+.travels-scroll {
+  margin-right: 10px;
+  height: 100%;
+}
+
+.owned-travels img {
+  border-radius: 8px;  
+}
+
+.profile {
+  padding: 10px;  
+}
+
+.my-travels-tittle {
+  margin: 10px;
+}

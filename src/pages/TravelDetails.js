@@ -11,14 +11,14 @@ class TravelDetails extends Component {
     this.props.value.addActivities(activity, _id)
   }
   
-  // renderList =() => {
-  //   const { activities } = this.props.value.singleTravel  ;        
-  //   if (activities.length > 0) {      
-  //     return activities.map((activity, index) => {         
-  //       return <li key={`id-${index}`}>{activity}</li>
-  //     })
-  //   }    
-  // } 
+  renderList =() => {
+    const { activities } = this.props.value.singleTravel  ;        
+    if (activities.length > 0) {      
+      return activities.map((activity, index) => {         
+        return <li key={`id-${index}`}>{activity}</li>
+      })
+    }    
+  } 
 
   render() {           
     const { close, singleTravel } = this.props.value
@@ -29,7 +29,7 @@ class TravelDetails extends Component {
           <ActivitiesForm onAdd={this.handleAdd} />
         </Owner>
         <DetailCard 
-        // renderList={this.renderList} 
+        renderList={this.renderList} 
         travel={singleTravel} 
         handleAdd={()=>this.handleAdd()}                        
         />              

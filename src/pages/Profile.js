@@ -2,17 +2,21 @@ import React, { Component } from 'react'
 import { withAuth } from '../providers/AuthProvider';
 import Navbar from '../components/Navbar';
 import travelService from '../lib/travel-service';
-import DetailCard from '../components/DetailCard';
 import NotificationsCard from '../components/NotificationsCard';
+import blankUser from '../images/blank-user.png';
+import UserTravels from '../components/UserTravels';
+import { withTravel } from '../providers/TravelsProvider';
+import TravelDetails from './TravelDetails';
+import ShowDetails from '../components/ShowDetails';
 
-class Private extends Component {
+class Profile extends Component {
 
   state = {
     travelsOwned: [],
     travels: []
   }
 
-  componentDidMount() {
+  componentDidMount() {    
     travelService.findOwned()
       .then((owned) => {        
         travelService.findTravelsBooked()
@@ -29,33 +33,45 @@ class Private extends Component {
 
   renderTravelsOwned = () => {
     return this.state.travelsOwned.map((travel, index) => {
-      return <DetailCard key={`id-${index}`} travel={travel}/>
+      return <UserTravels key={`id-${index}`} travel={travel}/>
     })
   }
 
   renderTravels =() => {
     return this.state.travels.map((travel, index) => {
-      return <DetailCard key={`id-${index}`} travel={travel}/>
+      return <UserTravels key={`id-${index}`} travel={travel}/>
     })
   }
 
-  render() {    
-    const {  logout, user } = this.props;
+  render() {       
+    const { user } = this.props;
+    const { hasClick } = this.props.value;
     const { username } = user;          
       return (
-        <div>
-          <h2>Welcome { username }</h2>
-          <p onClick={logout}>Logout</p>
-          <h2>My travels</h2>
-          {this.renderTravelsOwned()}
-          <h2>travels im in</h2>
-          {this.renderTravels()}
-          <NotificationsCard/>
+        <>
+          <section className="profile">
+            <div className="user-banner">
+              <h2>Welcome { username }</h2>
+              <img src={blankUser} alt="user"/>
+            </div> <hr/>          
+            <h2 className="my-travels-tittle">My travels</h2>  
+            <div className="owned-travels">    
+              {this.renderTravelsOwned()}       
+            </div>    
+            <h2>travels im in</h2>
+            <div className="owned-travels"> 
+              {this.renderTravels()}
+            </div>  
+            <NotificationsCard/>
+          </section>
+            <ShowDetails hasClick={hasClick}>
+              <TravelDetails/>
+            </ShowDetails>
           <Navbar/>
-        </div>
+        </>
       )
     }       
   
 }
 
-export default withAuth(Private);
+export default withTravel(withAuth(Profile));

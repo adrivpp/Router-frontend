@@ -5,7 +5,7 @@ import NotOwner from './NotOwner';
 class DetailCard extends Component {   
 
   renderList =() => {
-    const { activities } = this.props.travel ;        
+    const { activities } = this.props.travel;        
     if (activities.length > 0) {      
       return activities.map((activity, index) => {         
         return <li key={`id-${index}`}>{activity}</li>
@@ -13,7 +13,7 @@ class DetailCard extends Component {
     }    
   } 
 
-  render() {    
+  render() {        
     const { _id, name, seats, startPoint, endPoint } = this.props.travel;
     return (
       <div>           
