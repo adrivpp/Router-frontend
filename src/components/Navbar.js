@@ -10,16 +10,16 @@ class Navbar extends Component {
     this.props.update()    
   }
 
-  render() {    
-    const { user, logout } = this.props
+  render() {        
+    const { user, logout, isLogged } = this.props
     return (    
       <>  
-        <nav className="nav-bar">
-          <i className="far fa-bell"><Badge>{user.notifications.length}</Badge></i>
+        <nav className="nav-bar">        
+          {isLogged ? <i className="far fa-bell"><Badge>{user.notifications.length}</Badge></i> : null}          
           <Link to='/travels'><i className="fas fa-search"></i></Link>
           <Link to='/travels/new'><i className="fas fa-plus-circle"></i></Link>
           <Link to='/profile'><i className="far fa-user"></i></Link>
-          <i onClick={logout} className="fas fa-sign-out-alt"></i>
+          {isLogged ? <i onClick={logout} className="fas fa-sign-out-alt"></i> : null}
         </nav>
       {/* <NotificationsCard/> */}
      </>

@@ -80,7 +80,14 @@ h1 {
   margin-bottom: 0;
 }
 
-.select {
+select.input {  
+  width: 100%;
+  border: none;  
+  border-bottom: 2px solid white;
+  padding: 8px;
+}
+
+option {
   background: black;
 }
 
@@ -122,8 +129,23 @@ h1 {
   margin: 0 auto;
   width: 100%;
   column-count: 2;
-  column-gap: 15px;   
+  column-gap: 15px;     
   margin-bottom: 10vh;
+}
+
+.directions {
+  display: flex;  
+  margin-top: 5px;
+  align-items: center;
+}
+
+#marker {
+  font-size: 12px;
+  margin-right: 5px;
+}
+
+.directions p {
+  margin-right: 10px;  
 }
 
 
@@ -343,6 +365,7 @@ input {
   color: #fff;
   border-bottom: 2px solid white;  
   position: relative;
+  font-size: 14px;
 }
 
 .input::placeholder {
@@ -406,6 +429,7 @@ hr {
 
 .profile {
   padding: 10px;  
+  margin-bottom: 10vh;
 }
 
 .my-travels-tittle {

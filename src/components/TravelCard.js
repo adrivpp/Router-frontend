@@ -14,8 +14,11 @@ class TravelCard extends Component {
         <img src={imageUrl} alt={name}></img>        
         <div className="card-info">         
           <h3>{name}</h3>
-          <p>{startPoint}</p>
-          <p>{endPoint}</p>         
+          <div className="directions">
+            <i className="fas fa-map-marker-alt" id="marker"></i>
+            <p>{startPoint} -</p>
+            <p>{endPoint}</p>         
+          </div>
         </div>
       </div>
     );
