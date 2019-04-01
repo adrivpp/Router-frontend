@@ -13,7 +13,7 @@ class Home extends Component {
             <p className="tagline">Adventure awaits</p>        
           </div>
           <div>
-            <Link className="button" to='/signup'>Signup</Link>
+            <Link className="button" to='/signup'>Sign up</Link>
             <Link id="login" className="button" to='/login'>Login</Link>
           </div>
         </div>

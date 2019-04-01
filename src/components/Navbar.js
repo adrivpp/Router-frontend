@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { withAuth } from '../providers/AuthProvider';
 import Badge from './Badge';
-import NotificationsCard from './NotificationsCard';
+// import NotificationsCard from './NotificationsCard';
 
 class Navbar extends Component { 
  
@@ -21,7 +21,7 @@ class Navbar extends Component {
           <Link to='/profile'><i className="far fa-user"></i></Link>
           <i className="far fa-envelope-open"></i>
         </nav>
-      <NotificationsCard/>
+      {/* <NotificationsCard/> */}
      </>
     )
   }

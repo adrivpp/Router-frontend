@@ -3,6 +3,7 @@ import { withAuth } from '../providers/AuthProvider';
 import Navbar from '../components/Navbar';
 import travelService from '../lib/travel-service';
 import DetailCard from '../components/DetailCard';
+import NotificationsCard from '../components/NotificationsCard';
 
 class Private extends Component {
 
@@ -49,6 +50,7 @@ class Private extends Component {
           {this.renderTravelsOwned()}
           <h2>travels im in</h2>
           {this.renderTravels()}
+          <NotificationsCard/>
           <Navbar/>
         </div>
       )
