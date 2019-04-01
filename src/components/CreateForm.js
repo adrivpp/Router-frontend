@@ -11,14 +11,13 @@ class CreateForm extends Component {
     date: '',    
     seats: 1, 
     startPoint: '', 
-    endPoint: '',  
-    imageUrl: ''   
+    endPoint: '',      
   }
 
   //todo: handle errors
   
   getRandomPicture =()=> {    
-    if(this.state.endPoint !== '')
+    if(this.state.category !== '')
     axios.get(`https://api.unsplash.com/search/photos/?page=1&per_page=10&query=${this.state.category}&client_id=${applicationId}`)
     .then((response) => {      
       if(response.data.results.length > 0) {
@@ -30,7 +29,7 @@ class CreateForm extends Component {
   }
 
   handleChange =(e) => {    
-    const {name, value} = e.target
+    const {name, value} = e.target    
     this.setState({
       [name]: value      
     })
@@ -61,14 +60,15 @@ class CreateForm extends Component {
       <section className="create">      
         <div className="overlay">          
           <form onSubmit={this.handleSubmit} className="create-form">
-            <input className="input" onChange={this.handleChange} type="text" name="name" value={this.state.name} placeholder="Name"/>
-            <select className="input select" name="category" onChange={this.handleChange} >
+            <input className="input" required onChange={this.handleChange} type="text" name="name" value={this.state.name} placeholder="Name"/>
+            <select className="input select" name="category" onChange={this.handleChange} required>
+              <option value="">Travel category</option>
               {this.handleOptions()}            
             </select>
-            <input className="input" onChange={this.handleChange} type="date" name="date" value={this.state.date}/>
-            <input className="input" onChange={this.handleChange} type="number" name="seats" defaultValue="{this.state.seats}" placeholder="Available seats"/>
-            <input className="input" onChange={this.handleChange} type="text" name="startPoint" value={this.state.startPoint} placeholder="Start point"/>
-            <input className="input" onChange={this.handleChange} type="text" name="endPoint" value={this.state.endPoint} placeholder="End point"/>
+            <input className="input" onChange={this.handleChange} required type="date" name="date" value={this.state.date}/>
+            <input className="input" onChange={this.handleChange} required type="number" name="seats" defaultValue={this.state.seats} placeholder="Available seats"/>
+            <input className="input" onChange={this.handleChange} required type="text" name="startPoint" value={this.state.startPoint} placeholder="Start point"/>
+            <input className="input" onChange={this.handleChange} required type="text" name="endPoint" value={this.state.endPoint} placeholder="End point"/>
             <button className="button create-button" type="submit">Create</button>
           </form>
         </div>

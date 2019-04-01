@@ -4,7 +4,7 @@ import NotOwner from './NotOwner';
 
 class DetailCard extends Component {   
 
-  renderList =() => {
+  renderList =() => {    
     const { activities } = this.props.travel;        
     if (activities.length > 0) {      
       return activities.map((activity, index) => {         
@@ -14,7 +14,9 @@ class DetailCard extends Component {
   } 
 
   render() {        
-    const { _id, name, seats, startPoint, endPoint } = this.props.travel;
+    
+    const { name, seats, startPoint, endPoint } = this.props.travel;
+    const { travel } = this.props
     return (
       <div>           
         <h2>{name}</h2>
@@ -25,7 +27,7 @@ class DetailCard extends Component {
           {this.renderList()}
         </ul>     
         <NotOwner travel={this.props.travel}>
-          <BookButton id={_id}/>
+          <BookButton travel={travel}/>
         </NotOwner>
       </div>
     );

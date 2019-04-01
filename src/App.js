@@ -12,7 +12,7 @@ import { Route } from 'react-router-dom';
 import CreateEvent from './pages/CreateEvent';
 import TravelList from './pages/TravelList';
 import './App.css'
-import TravelDetails from './pages/TravelDetails';
+// import TravelDetails from './pages/TravelDetails';
 
 class App extends Component {
   render() {

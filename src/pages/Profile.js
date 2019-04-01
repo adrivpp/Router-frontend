@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { withAuth } from '../providers/AuthProvider';
 import Navbar from '../components/Navbar';
 import travelService from '../lib/travel-service';
-import NotificationsCard from '../components/NotificationsCard';
+import { Link } from 'react-router-dom'
 import blankUser from '../images/blank-user.png';
 import UserTravels from '../components/UserTravels';
 import { withTravel } from '../providers/TravelsProvider';
@@ -32,15 +32,25 @@ class Profile extends Component {
   }
 
   renderTravelsOwned = () => {
-    return this.state.travelsOwned.map((travel, index) => {
-      return <UserTravels key={`id-${index}`} travel={travel}/>
-    })
+    const { travelsOwned } = this.state
+    if ( travelsOwned.length ) {
+      return this.state.travelsOwned.map((travel, index) => {
+        return <UserTravels key={`id-${index}`} travel={travel}/>
+      })
+    } else {
+      return <Link to={'/travels/new'} className="button">Create</Link>
+    }
   }
 
   renderTravels =() => {
-    return this.state.travels.map((travel, index) => {
-      return <UserTravels key={`id-${index}`} travel={travel}/>
-    })
+    const { travels } = this.state
+    if(travels.length) {
+      return this.state.travels.map((travel, index) => {
+        return <UserTravels key={`id-${index}`} travel={travel}/>
+      })
+    } else {
+      return <Link to={'/travels'} className="button">Search</Link>
+    }
   }
 
   render() {       
@@ -52,17 +62,16 @@ class Profile extends Component {
           <section className="profile">
             <div className="user-banner">
               <h2>Welcome { username }</h2>
-              <img src={blankUser} alt="user"/>
+              <img src={ blankUser } alt="user"/>
             </div> <hr/>          
-            <h2 className="my-travels-tittle">My travels</h2>  
+              <h2 className="my-travels-tittle">My travels</h2>  
             <div className="owned-travels">    
               {this.renderTravelsOwned()}       
             </div>    
-            <h2>travels im in</h2>
+            <h2 className="my-travels-tittle">Travels I'm in</h2>
             <div className="owned-travels"> 
               {this.renderTravels()}
-            </div>  
-            <NotificationsCard/>
+            </div>              
           </section>
             <ShowDetails hasClick={hasClick}>
               <TravelDetails/>

@@ -30,7 +30,8 @@ class TravelProvider extends Component {
     status: '',
     search: '',
     hasClick: false,
-    singleTravel: {},    
+    singleTravel: {},   
+    activities: [],
   }  
 
   findAll =() => {
@@ -63,7 +64,7 @@ class TravelProvider extends Component {
     //this.props.history.push('/travels')
   } 
 
-  handleAdd =(activity, id) => {            
+  handleAdd =(id, activity) => {         
     travelService.addActivities(id, activity)
     .then((travel) => {                
       this.setState({
@@ -87,7 +88,8 @@ class TravelProvider extends Component {
         //this.props.history.push(`/travels/${id}`)
         this.setState({
           hasClick: true,
-          singleTravel: travel
+          singleTravel: travel,
+          status: 'loaded'
         })
       })
       .catch(err => console.log(err))
@@ -115,7 +117,7 @@ class TravelProvider extends Component {
           <Provider value={
             { travels,
               status,  
-              search, 
+              search,               
               hasClick, 
               singleTravel,
               renderCard: this.renderCard, 
@@ -124,7 +126,7 @@ class TravelProvider extends Component {
               close: this.handleClose, 
               onSearch: this.handleSearch, 
               getAll: this.findAll,
-              addActivities: this.handleAdd,
+              addActivity: this.handleAdd,
               handleDetails: this.handleClick
             }} >
             {this.props.children}

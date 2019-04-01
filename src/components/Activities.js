@@ -9,7 +9,7 @@ class Activities extends Component {
   }
 
   renderList =() => {   
-    return this.props.travels.map(travel => {
+    return this.props.travels.map((travel) => {
       if (travel.activities.length) {
         return travel.activities.map((act, index) => {
           return <p onClick={()=>this.props.onActivity(act)} key={`id-${index}`} style={{backgroundColor: this.getRandomColor()}}>{act}</p>

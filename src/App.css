@@ -98,8 +98,7 @@ option {
   bottom: 0;
   min-height: 70vh;
   width: 100vh;
-  border-radius: 30px 30px 0 0;
-  box-shadow: 2px; 
+  border-radius: 30px 30px 0 0; 
   box-shadow: 0px 0px 6px #999;
 }
 
@@ -434,4 +433,29 @@ hr {
 
 .my-travels-tittle {
   margin: 10px;
+}
+
+/* notifications  */
+.notification-card {
+  
+ 
+}
+
+.notifications {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  position: fixed;
+  bottom: 9vh;
+  box-shadow: 0px 0px 6px #999;
+  left: 2vw;
+  width: 80vw;
+  background: white;
+  z-index: 10;
+  padding: 20px;
+}
+
+.nav-bar-section {
+  position: relative;
 }

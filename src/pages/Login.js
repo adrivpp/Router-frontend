@@ -14,7 +14,10 @@ class Login extends Component {
 
     this.props.login({ username, password })
       .then(() => {})
-      .catch( error => console.log(error) )
+      .catch((error) => {
+         console.log(error)
+         return error         
+      })
   }
 
   handleChange = (event) => {  
@@ -32,13 +35,13 @@ class Login extends Component {
             <div className="user">              
               <div className="user-input">          
                 <i className="far fa-user input-user"></i>          
-                <input type="text" name="username" value={username} onChange={this.handleChange} placeholder="username"/>
+                <input type="text" name="username" required={true} value={username} onChange={this.handleChange} placeholder="username"/>
               </div>
             </div>
             <div className="user">              
               <div className="user-input">
                 <i className="fas fa-lock"></i>
-                <input type="password" name="password" value={password} onChange={this.handleChange} placeholder="password"/>
+                <input type="password" name="password" required={true} value={password} onChange={this.handleChange} placeholder="password"/>
               </div>
               <p>Dont have an account? 
                 <Link to={"/signup"}>  Sign up</Link>

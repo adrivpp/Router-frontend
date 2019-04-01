@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import authService from '../lib/auth-service';
+import Loader from '../components/Loader';
 
 export const AuthContext = React.createContext(
   // authStore // default value
@@ -38,7 +39,7 @@ export default class AuthProvider extends Component {
   updateUser = () => {
     const { username } = this.state.user;
     return authService.update(username)
-    .then((user) => {
+    .then((user) => {      
       this.setState({
         user,
       })
@@ -77,7 +78,13 @@ export default class AuthProvider extends Component {
       .then((user) => {
         this.setUser(user);
       })
-      .catch(error => console.log(error))
+      .catch((error) => {
+        console.log(error)
+        this.setState({
+          status: 'hasError'
+        })
+        return error         
+     })
   }
 
   componentDidMount() {
@@ -90,6 +97,7 @@ export default class AuthProvider extends Component {
         })
       })
       .catch((error) => {
+        console.log(error)
         this.setState({ 
           isLogged: false,
           user: {},
@@ -103,7 +111,7 @@ export default class AuthProvider extends Component {
     const { children } = this.props;
     switch (status) {
       case 'loading':
-        return <div>Loading</div>
+        return <Loader/>
       default:
         return (
           <Provider value={

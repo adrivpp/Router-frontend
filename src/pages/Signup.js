@@ -21,7 +21,9 @@ class Signup extends Component {
             password: "",
         });
       })
-      .catch(error => console.log(error) )
+      .catch((error) => {
+        console.log(error)              
+     })
   }
 
   handleChange = (event) => {  
@@ -39,13 +41,13 @@ class Signup extends Component {
             <div className="user">              
               <div className="user-input">          
                 <i className="far fa-user input-user"></i>          
-                <input type="text" name="username" value={username} onChange={this.handleChange} placeholder="username"/>
+                <input type="text" name="username" required={true} value={username} onChange={this.handleChange} placeholder="username"/>
               </div>
             </div>
             <div className="user">              
               <div className="user-input">
                 <i className="fas fa-lock"></i>
-                <input type="password" name="password" value={password} onChange={this.handleChange} placeholder="password"/>
+                <input type="password" name="password" required={true} value={password} onChange={this.handleChange} placeholder="password"/>
               </div>
               <p>Already have account? 
                 <Link to={"/login"}>  Login</Link>

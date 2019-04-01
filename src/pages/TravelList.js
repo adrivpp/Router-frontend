@@ -17,7 +17,7 @@ class TravelList extends Component {
     this.props.value.getAll()
   }  
 
-  render() {        
+  render() {          
     const { renderCard, search, filterActivity, travels, hasClick, getAll } = this.props.value
     return(
       <>

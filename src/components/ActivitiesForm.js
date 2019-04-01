@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withTravel } from '../providers/TravelsProvider';
 
 class ActivitiesForm extends Component {
   state = {
@@ -13,7 +14,7 @@ class ActivitiesForm extends Component {
 
   handleSubmit =(e) => {
     e.preventDefault();    
-    this.props.onAdd(this.state)
+    this.props.value.addActivity(this.props.id, this.state)
     this.setState({
       activity: ''
     })
@@ -29,4 +30,4 @@ class ActivitiesForm extends Component {
   }
 }
 
-export default ActivitiesForm;
+export default withTravel(ActivitiesForm);

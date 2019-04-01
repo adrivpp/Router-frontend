@@ -1,10 +1,10 @@
 import React from 'react';
 
-const ShowDetails =(props) => {   
+const ShowDetails =(props) => {  
   return (
-    <div>
+    <>
       {props.hasClick && props.children}
-    </div>
+    </>
   );
 }
 

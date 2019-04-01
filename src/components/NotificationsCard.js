@@ -9,15 +9,20 @@ class NotificationsCard extends Component {
 
   state = {
     travelsWithNotifications: [],
-    status: 'loading'
+    status: 'loading',
+    deny: false,
+    agree: false
   }
 
   handleDeny =(id, request) => {      
     travelService.denyRequest(id, request)
-    .then(() => {
+    .then(() => {      
       this.props.update()      
       .then(() => {
         this.findNotifications()    
+      })
+      this.setState({
+        deny: true
       })
     })
     .catch(err => console.log(err))
@@ -25,10 +30,13 @@ class NotificationsCard extends Component {
 
   handleAgree =(id, request) => {       
     travelService.agreeRequest(id, request)
-    .then(() => {
+    .then(() => {          
       this.props.update()      
       .then(() => {        
         this.findNotifications()    
+      })
+      this.setState({
+        agree: true
       })
     })
     .catch(err => console.log(err))
@@ -49,29 +57,28 @@ class NotificationsCard extends Component {
     this.findNotifications()
   }
 
-  renderNotifications = () => {
-    const { travelsWithNotifications } = this.state
+  renderNotifications = () => {    
+    const { travelsWithNotifications } = this.state    
     return travelsWithNotifications.map((travel, index) => {
       return (
-        <>
-        <h2 key={`id-${index}`}>{travel.name}</h2>
-        {travel.request.map((request) => {
-          return (
-            <>
-            <Owner travel={travel}>
-              <button onClick={() => this.handleDeny( travel._id, request._id)}>deny</button>
-              <button onClick={() => this.handleAgree( travel._id, request._id)}>Agree</button>
-            </Owner>
-            </>
-          )
-        })}
-        </>
+        <div key={`id-${index}`} className="notification-card">                    
+          <h2>{travel.name}</h2>
+          {travel.request.map((request) => {
+            return (
+              <>
+              <Owner id={travel.owner._id}>
+                <button onClick={() => this.handleDeny( travel._id, request._id)}>deny</button>
+                <button onClick={() => this.handleAgree( travel._id, request._id)}>Agree</button>
+              </Owner>
+              </>
+            )
+          })}
+        </div>
       )
     })
   }
   
-  render() {
-    
+  render() {    
     const { status } = this.state
     switch (status) {
       case 'loading':
