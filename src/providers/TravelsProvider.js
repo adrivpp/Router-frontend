@@ -31,7 +31,7 @@ class TravelProvider extends Component {
     search: '',
     hasClick: false,
     singleTravel: {},   
-    activities: [],
+    activities: []    
   }  
 
   findAll =() => {
@@ -82,6 +82,17 @@ class TravelProvider extends Component {
     })
   }
 
+  updateTravel =(id) => {
+    travelService.findOne(id) 
+      .then((travel) => {        
+        this.setState({          
+          singleTravel: travel,
+          status: 'loaded'
+        })
+      })
+      .catch(err => console.log(err))
+  }
+
   handleClick =(id) => {       
     travelService.findOne(id) 
       .then((travel) => {
@@ -127,7 +138,8 @@ class TravelProvider extends Component {
               onSearch: this.handleSearch, 
               getAll: this.findAll,
               addActivity: this.handleAdd,
-              handleDetails: this.handleClick
+              handleDetails: this.handleClick,
+              updateTravel: this.updateTravel
             }} >
             {this.props.children}
           </Provider>

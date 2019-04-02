@@ -27,7 +27,7 @@ class DetailCard extends Component {
           {this.renderList()}
         </ul>     
         <NotOwner travel={this.props.travel}>
-          <BookButton travel={travel}/>
+          <BookButton travel={travel} />
         </NotOwner>
       </div>
     );

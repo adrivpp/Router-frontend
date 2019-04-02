@@ -18,11 +18,6 @@ class TravelService {
       .then(({ data }) => data); 
   }
 
-  findNotifications(arrayIds) {
-    return this.travel.post('/travels/notifications', arrayIds)
-      .then(({ data }) => data); 
-  }
-
   findTravelsBooked() {
     return this.travel.get('/travels/booked')
       .then(({ data }) => data); 
@@ -43,13 +38,8 @@ class TravelService {
       .then(({data}) => data)
   }
 
-  findByCategory(category) {
-    return this.travel.get(`/travels/${category}`)
-      .then(({data}) => data);
-  }
-
   bookTrip(id) {
-    return this.travel.put(`/travels/${id}/book`)
+    return this.travel.post(`/travels/${id}/book`)
       .then(({data}) => data)
   }
 

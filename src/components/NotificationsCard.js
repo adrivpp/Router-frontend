@@ -9,72 +9,69 @@ class NotificationsCard extends Component {
 
   state = {
     travelsWithNotifications: [],
-    status: 'loading',
-    deny: false,
-    agree: false
-  }
-
-  handleDeny =(id, request) => {      
+    status: 'loading',    
+  } 
+  
+  handleDeny =(id, request) => {
     travelService.denyRequest(id, request)
     .then(() => {      
-      this.props.update()      
-      .then(() => {
-        this.findNotifications()    
-      })
       this.setState({
-        deny: true
+        status:'loaded'
       })
     })
-    .catch(err => console.log(err))
-  }
-
-  handleAgree =(id, request) => {       
-    travelService.agreeRequest(id, request)
-    .then(() => {          
-      this.props.update()      
-      .then(() => {        
-        this.findNotifications()    
-      })
+    .catch(err => {
+      console.log(err) 
       this.setState({
-        agree: true
+        status: 'hasError'
       })
     })
-    .catch(err => console.log(err))
+    this.findTravels()
   }
 
-  findNotifications = () => {    
-    travelService.findNotifications(this.props.user.notifications)
+  findTravels =() => {
+    travelService.findOwned()
     .then((travels) => {
+      const requestedTravels = travels.filter((travel) => {
+        return travel.notifications.length > 0
+      })
       this.setState({
-        travelsWithNotifications: travels,
+        travelsWithNotifications: requestedTravels,
         status: 'loaded'
-      })   
+      })
     })
-    .catch(err => console.log(err))
+    .catch((err) => {
+      console.log(err)
+      this.setState({
+        status: 'hasError'
+      })
+    })
   }
 
-  componentDidMount() {   
-    this.findNotifications()
+  componentDidMount() {
+    this.findTravels()
   }
+  
 
   renderNotifications = () => {    
     const { travelsWithNotifications } = this.state    
     return travelsWithNotifications.map((travel, index) => {
-      return (
-        <div key={`id-${index}`} className="notification-card">                    
-          <h2>{travel.name}</h2>
-          {travel.request.map((request) => {
-            return (
-              <>
-              <Owner id={travel.owner._id}>
-                <button onClick={() => this.handleDeny( travel._id, request._id)}>deny</button>
-                <button onClick={() => this.handleAgree( travel._id, request._id)}>Agree</button>
-              </Owner>
-              </>
-            )
-          })}
-        </div>
-      )
+      return travel.notifications.map((notification) => {  
+        if (!notification.read) {
+          return (
+            <div key={`id-${index}`} className="notification-card">                    
+            <h2>{travel.name}</h2>              
+                <>
+                <Owner id={travel.owner}>
+                  <button onClick={() => this.handleDeny(travel._id, notification.request)}>deny</button>
+                  <button onClick={() => this.handleAgree(travel._id, notification.request)}>Agree</button>
+                </Owner>
+                </>
+            </div>
+          )          
+        }  else {
+          return null 
+        } 
+      })
     })
   }
   
@@ -82,7 +79,9 @@ class NotificationsCard extends Component {
     const { status } = this.state
     switch (status) {
       case 'loading':
-      return <Loader/>       
+      return <Loader/>
+      case 'hasError':
+      return <p>error</p>       
       default:
       return (
         <div>    

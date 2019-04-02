@@ -4,11 +4,13 @@ import { withAuth } from '../providers/AuthProvider';
 import Badge from './Badge';
 import NotificationsCard from './NotificationsCard';
 import ShowDetails from './ShowDetails';
+import travelService from '../lib/travel-service';
+import Loader from './Loader';
 
 class Navbar extends Component { 
 
   state = {
-    hasClick: false
+    hasClick: false,       
   }
 
   handleClick =() => {    
@@ -17,31 +19,32 @@ class Navbar extends Component {
     })
   }
  
-  componentDidMount() {
-    this.props.update()    
+  componentDidMount() {    
+    this.props.update() 
+  }   
+    
+
+  render() {               
+    const { logout, isLogged } = this.props;    
+      return (    
+        <section className="nav-bar-section">  
+          <nav className="nav-bar">        
+            <i className="far fa-bell" onClick={this.handleClick}>
+            <Badge>2</Badge></i>        
+            <Link to='/travels'><i className="fas fa-search"></i></Link>
+            <Link to='/travels/new'><i className="fas fa-plus-circle"></i></Link>
+            <Link to='/profile'><i className="far fa-user"></i></Link>
+            {isLogged ? <i onClick={logout} className="fas fa-sign-out-alt"></i> : null}
+          </nav>
+          <ShowDetails hasClick={this.state.hasClick}>
+            <div className="notifications">
+              <NotificationsCard/>
+            </div>
+          </ShowDetails>
+       </section>
+      )        
+    }
   }
 
-  render() {        
-    
-    const { user, logout, isLogged } = this.props
-    return (    
-      <section className="nav-bar-section">  
-        <nav className="nav-bar">        
-          {isLogged ? <i className="far fa-bell" onClick={this.handleClick}>
-          <Badge>{user.notifications.length}</Badge></i> : null}          
-          <Link to='/travels'><i className="fas fa-search"></i></Link>
-          <Link to='/travels/new'><i className="fas fa-plus-circle"></i></Link>
-          <Link to='/profile'><i className="far fa-user"></i></Link>
-          {isLogged ? <i onClick={logout} className="fas fa-sign-out-alt"></i> : null}
-        </nav>
-        <ShowDetails hasClick={this.state.hasClick}>
-          <div className="notifications">
-            <NotificationsCard/>
-          </div>
-        </ShowDetails>
-     </section>
-    )
-  }
-}
 
 export default withAuth(Navbar);
