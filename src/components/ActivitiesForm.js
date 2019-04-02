@@ -23,7 +23,7 @@ class ActivitiesForm extends Component {
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
-        <input onChange={this.handleChange} type="text" name="activity" value={this.state.activity}/>
+        <input onChange={this.handleChange} required={true} type="text" name="activity" value={this.state.activity}/>
         <button type="submit">add</button>
       </form>
     );

@@ -11,8 +11,9 @@ import Home from './pages/Home';
 import { Route } from 'react-router-dom';
 import CreateEvent from './pages/CreateEvent';
 import TravelList from './pages/TravelList';
+import Notifications from './pages/Notifications';
 import './App.css'
-// import TravelDetails from './pages/TravelDetails';
+
 
 class App extends Component {
   render() {
@@ -23,10 +24,11 @@ class App extends Component {
             <Route exact path="/" component={Home}/>            
             <AnonRoute exact path="/signup" component={Signup} />
             <AnonRoute exact path="/login" component={Login} />            
-            <PrivateRoute exact path="/travels/new" component={CreateEvent}/>    
+            <PrivateRoute exact path="/travels/new" component={CreateEvent}/> 
+            <PrivateRoute exact path="/:id/notifications" component={Notifications}/>
             <TravelProvider>      
-              <PrivateRoute path="/profile" component={Profile} />              
-              <Route path="/travels" component={TravelList}/>   
+              <PrivateRoute exact path="/profile" component={Profile} />              
+              <Route exact path="/travels" component={TravelList}/>   
               {/* <Route exact path="/travels/:id" component={TravelDetails}/> */}
             </TravelProvider>                      
           </Switch>

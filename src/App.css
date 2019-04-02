@@ -445,15 +445,7 @@ hr {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-content: center;
-  position: fixed;
-  bottom: 9vh;
-  box-shadow: 0px 0px 6px #999;
-  left: 2vw;
-  width: 80vw;
-  background: white;
-  z-index: 10;
-  padding: 20px;
+  align-content: center;  
 }
 
 .nav-bar-section {

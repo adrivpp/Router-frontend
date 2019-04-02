@@ -38,6 +38,11 @@ class TravelService {
       .then(({data}) => data);
   }
 
+  deletNotifications(notification, travelId) {
+    return this.travel.put('/travels/notifications',  { notification, travelId })
+      .then(({data}) => data)
+  }
+
   addActivities(id, activity) {
     return this.travel.put(`/travels/${id}/activities`, activity)
       .then(({data}) => data)
@@ -49,7 +54,7 @@ class TravelService {
   }
 
   denyRequest(id, invitedId) {
-    return this.travel.put(`/travels/${id}/deny`, {invitedId})
+    return this.travel.put(`/travels/${id}/deny`, { invitedId })
       .then(({data}) => data)
   }
 

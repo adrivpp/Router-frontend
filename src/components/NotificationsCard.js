@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { withAuth } from '../providers/AuthProvider';
 import travelService from '../lib/travel-service';
-import Owner from './Owner';
-
 
 class NotificationsCard extends Component {
 
@@ -27,6 +25,7 @@ class NotificationsCard extends Component {
   }    
 
   handleAgree = (id, request) => {
+    console.log(id)
     travelService.agreeRequest(id, request)
     .then(() => {      
       this.props.find()
@@ -40,37 +39,81 @@ class NotificationsCard extends Component {
         status: 'hasError'
       })
     })    
-  }    
+  }      
 
-  renderOwned = () => {
-    
+  handleDelete =(notification, travelId) => {   
+    travelService.deletNotifications(notification, travelId)
+    .then(() => {
+      this.props.find()
+      this.setState({
+        status: 'loaded'
+      })
+    })
+    .catch((err) => {
+      console.log(err)
+      this.setState({
+        status: 'hasError'
+      })
+    })
   }
 
-  renderNotifications = () => {        
-    const { travels } = this.props 
-    return travels.map((travel) => {
-      return travel.notifications.map((notification, index) => {         
-        if(notification.status === 'Pending') {
-          return (
-            <div key={`id-${index}`} className="notification-card">                    
-              <h2>{travel.name}</h2>                  
-                <>
-                <Owner id={travel.owner}>
-                  <button onClick={() => this.handleDeny(travel._id, notification.request)}>deny</button>
-                  <button onClick={() => this.handleAgree(travel._id, notification.request)}>Agree</button>
-                </Owner>
-                </>                         
-            </div>
-          )
-        } else {
-          return null
-        }
+  renderOwned = () => {
+    const { owned } = this.props    
+    return owned.map((travel) => {
+      return travel.notifications.map((notification, index) => {        
+        return (                    
+          notification.status === 'Pending' ? 
+          <div className="notificationCard">
+            <h2>{notification.request.username} quiere viajar contigo</h2>            
+            <p>{travel.name}</p>            
+            <button onClick={() => this.handleDeny(travel._id, notification.request._id)}>deny</button>
+            <button onClick={() => this.handleAgree(travel._id, notification.request._id)}>Agree</button>
+          </div> : null          
+        )
+      })
     })
-  })
-}
+  }
+
+  renderRequested = () => {
+    const { requested } = this.props
+    return requested.map((travel) => {
+      return travel.notifications.map((notification) => {
+        return (
+          notification.status !== 'Pending' ? 
+          <div className="notificationCard">
+            <h2>{travel.owner.username} has {notification.status} your request</h2>
+            <button onClick={() => this.handleDelete(notification._id, travel._id)}>Ok</button>
+          </div> : null
+        )
+      })
+    })
+  }
+
+//   renderNotifications = () => {        
+//     const { owned } = this.props 
+//     return owned.map((travel) => {
+//       return owned.notifications.map((notification, index) => {         
+//         if(notification.status === 'Pending') {
+//           return (
+//             <div key={`id-${index}`} className="notification-card">                    
+//               <h2>{owned.name}</h2>                  
+//                 <>
+//                 <Owner id={owned.owner}>
+//                   <button onClick={() => this.handleDeny(owned._id, notification.request)}>deny</button>
+//                   <button onClick={() => this.handleAgree(owned._id, notification.request)}>Agree</button>
+//                 </Owner>
+//                 </>                         
+//             </div>
+//           )
+//         } else {
+//           return null
+//         }
+//     })
+//   })
+// }
   
   
-  render() {    
+  render() {        
     const { status } = this.state
     switch (status) {      
       case 'hasError':
@@ -78,7 +121,8 @@ class NotificationsCard extends Component {
       default:
       return (
         <div>    
-          {this.renderNotifications()}               
+          {this.renderOwned()}  
+          {this.renderRequested()}             
         </div>
       )
     }
