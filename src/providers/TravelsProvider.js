@@ -60,8 +60,7 @@ class TravelProvider extends Component {
   handleClose =() => {
     this.setState({
       hasClick: false
-    })    
-    //this.props.history.push('/travels')
+    })        
   } 
 
   handleAdd =(id, activity) => {         

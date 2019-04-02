@@ -33,6 +33,11 @@ class TravelService {
       .then(({data}) => data);
   }
 
+  findNotifications() {
+    return this.travel.get('/travels/notifications') 
+      .then(({data}) => data);
+  }
+
   addActivities(id, activity) {
     return this.travel.put(`/travels/${id}/activities`, activity)
       .then(({data}) => data)
