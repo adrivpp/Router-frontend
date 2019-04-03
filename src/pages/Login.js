@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import { withAuth } from '../providers/AuthProvider';
 import { Link } from 'react-router-dom';
+import ErrorMessages from '../components/ErrorMessages';
 
 class Login extends Component {
   state = {
     username: "",
     password: "",
+    error: {}
   }
 
   handleFormSubmit = (event) => {
@@ -13,11 +15,12 @@ class Login extends Component {
     const { username, password } = this.state
 
     this.props.login({ username, password })
-      .then(() => {})
-      .catch((error) => {
-         console.log(error)
-         return error         
+      .then((err) => {       
+        this.setState({
+          error: err
+        })
       })
+      
   }
 
   handleChange = (event) => {  
@@ -26,7 +29,7 @@ class Login extends Component {
   }
 
   render() {
-    const { username, password } = this.state;
+    const { username, password, error } = this.state;
     return (
       <section className="auth">
         <div className="overlay">
@@ -43,6 +46,7 @@ class Login extends Component {
                 <i className="fas fa-lock"></i>
                 <input type="password" name="password" required={true} value={password} onChange={this.handleChange} placeholder="password"/>
               </div>
+              {error.message ? <ErrorMessages error={error}/> : null }
               <p>Dont have an account? 
                 <Link to={"/signup"}>  Sign up</Link>
               </p>

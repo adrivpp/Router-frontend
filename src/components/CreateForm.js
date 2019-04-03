@@ -9,7 +9,7 @@ class CreateForm extends Component {
     name: '',    
     category: '',
     date: '',    
-    seats: 1, 
+    seats: '', 
     startPoint: '', 
     endPoint: '',      
   }
@@ -60,15 +60,15 @@ class CreateForm extends Component {
       <section className="create">      
         <div className="overlay">          
           <form onSubmit={this.handleSubmit} className="create-form">
-            <input className="input" required onChange={this.handleChange} type="text" name="name" value={this.state.name} placeholder="Name"/>
+            <input className="input" required={true} onChange={this.handleChange} type="text" name="name" value={this.state.name} placeholder="Name"/>
             <select className="input select" name="category" onChange={this.handleChange} required>
               <option value="">Travel category</option>
               {this.handleOptions()}            
             </select>
-            <input className="input" onChange={this.handleChange} required type="date" name="date" value={this.state.date}/>
-            <input className="input" onChange={this.handleChange} required type="number" name="seats" defaultValue={this.state.seats} placeholder="Available seats"/>
-            <input className="input" onChange={this.handleChange} required type="text" name="startPoint" value={this.state.startPoint} placeholder="Start point"/>
-            <input className="input" onChange={this.handleChange} required type="text" name="endPoint" value={this.state.endPoint} placeholder="End point"/>
+            <input className="input" onChange={this.handleChange} required={true} type="date" name="date" value={this.state.date}/>
+            <input className="input" onChange={this.handleChange} required={true} type="number" name="seats" Value={this.state.seats} placeholder="Available seats"/>
+            <input className="input" onChange={this.handleChange} required={true} type="text" name="startPoint" value={this.state.startPoint} placeholder="Start point"/>
+            <input className="input" onChange={this.handleChange} required={true} type="text" name="endPoint" value={this.state.endPoint} placeholder="End point"/>
             <button className="button create-button" type="submit">Create</button>
           </form>
         </div>

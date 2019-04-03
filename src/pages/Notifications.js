@@ -3,6 +3,7 @@ import { withAuth } from '../providers/AuthProvider';
 import travelService from '../lib/travel-service';
 import { withNotifications } from '../providers/NotificationsProvider';
 import Navbar from '../components/Navbar';
+import Error from '../components/Error';
 
 class Notifications extends Component {
 
@@ -18,8 +19,10 @@ class Notifications extends Component {
         status:'loaded'
       })
     })
-    .catch(err => {
-      console.log(err)       
+    .catch(() => {
+      this.setState({
+        status: 'hasError'
+      })       
     })    
   }    
 
@@ -31,8 +34,10 @@ class Notifications extends Component {
         status:'loaded'
       })
     })
-    .catch(err => {
-      console.log(err)       
+    .catch((err) => {
+      this.setState({
+        status: 'hasError'
+      })
     })    
   }      
 
@@ -44,8 +49,10 @@ class Notifications extends Component {
         status: 'loaded'
       })
     })
-    .catch((err) => {
-      console.log(err)      
+    .catch(() => {
+      this.setState({
+        status: 'hasError'
+      })
     })
   }
 
@@ -55,11 +62,17 @@ class Notifications extends Component {
       return travel.notifications.map((notification, index) => {        
         return (                    
           notification.status === 'Pending' ? 
-          <div className="notificationCard" key={`id-${index}`}>
-            <h2>{notification.request.username} quiere viajar contigo</h2>            
-            <p>{travel.name}</p>            
-            <button onClick={() => this.handleDeny(travel._id, notification.request._id)}>deny</button>
-            <button onClick={() => this.handleAgree(travel._id, notification.request._id)}>Agree</button>
+          <div className="notifications-card" key={`id-${index}`}>
+            <div className="not-img">
+              <img src={travel.imageUrl} alt={travel.name}></img>
+            </div>
+            <div className="notification-info">
+              <h2>{notification.request.username} quiere viajar contigo</h2>                             
+              <div className="notification-buttons">                      
+                <button className="request agree" onClick={() => this.handleAgree(travel._id, notification.request._id)}><i class="fas fa-check"></i></button>
+                <button className="request deny" onClick={() => this.handleDeny(travel._id, notification.request._id)}><i class="fas fa-times"></i></button>
+              </div>  
+            </div>
           </div> : null          
         )
       })
@@ -72,8 +85,8 @@ class Notifications extends Component {
       return travel.notifications.map((notification, index) => {
         return (
           notification.status !== 'Pending' ? 
-          <div className="notificationCard" key={`id-${index}`}>
-            <h2>{travel.owner.username} has {notification.status} your request</h2>
+          <div className="notificationCard" key={`id-${index}`}>          
+            <h3>{travel.owner.username} has {notification.status} your request</h3>
             <button onClick={() => this.handleDelete(notification._id, travel._id)}>Ok</button>
           </div> : null
         )
@@ -82,19 +95,22 @@ class Notifications extends Component {
   }  
   
   render() {        
-    const { status } = this.state
+    const { status } = this.state  
+    const { owned, requested } =this.props.value
+    console.log(owned.length, requested.length)
     switch (status) {      
       case 'hasError':
-      return <p>error</p>       
+      return <Error/>       
       default:
-      return (
+      return (       
         <>
-          <section className="notifications">    
-            {this.renderOwned()}  
-            {this.renderRequested()}             
-          </section>
-          <Navbar/>
-        </>
+        <section className="notifications">  
+          <h2>Notifications</h2>          
+          {this.renderOwned()}  
+          {this.renderRequested()}             
+        </section>
+        <Navbar/>         
+        </>                      
       )
     }
   }

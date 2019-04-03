@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import DetailCard from '../components/DetailCard';
-import ActivitiesForm from '../components/ActivitiesForm';
-import Owner from '../components/Owner';
 import travelService from '../lib/travel-service';
 import { Loader } from 'semantic-ui-react';
+import Navbar from '../components/Navbar';
+import Error from '../components/Error';
 
 class TravelDetails extends Component {
 
@@ -41,13 +41,15 @@ class TravelDetails extends Component {
       case 'loading':
       return <Loader/>
       case 'hasError':
-      return <p>error</p>       
+      return <Error/>       
       default:
-      return (          
-        <div className="travel-info">          
-          
-          <DetailCard travel={travel} findSingle={this.findSingle} handleAdd={this.handleAdd}/>              
-        </div>   
+      return (       
+        <>   
+          <div className="travel-info">            
+            <DetailCard travel={travel} findSingle={this.findSingle} handleAdd={this.handleAdd}/>              
+          </div>   
+        <Navbar/>
+        </>
       )            
     }
   }

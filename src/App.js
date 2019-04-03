@@ -30,8 +30,8 @@ class App extends Component {
             <NotificationsProvider>
               <TravelProvider>      
                 <PrivateRoute exact path="/profile" component={Profile} />              
-                <Route exact path="/travels" component={TravelList}/>   
-                <Route exact path="/travels/:id" component={TravelDetails}/>           
+                <PrivateRoute exact path="/travels" component={TravelList}/>   
+                <PrivateRoute exact path="/travels/:id" component={TravelDetails}/>           
               </TravelProvider>                      
               <PrivateRoute exact path="/:id/notifications" component={Notifications}/>
             </NotificationsProvider>

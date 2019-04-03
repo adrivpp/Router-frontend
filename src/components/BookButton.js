@@ -11,6 +11,7 @@ class BookButton extends Component {
   }
 
   handleClick =() => {
+
     this.setState({
       isLoading: true
     })
@@ -25,7 +26,7 @@ class BookButton extends Component {
   }
 
   renderButton =() => {    
-    const { notifications, attendees } = this.props.travel;     
+    const { notifications, attendees, seats } = this.props.travel;     
     const { user } = this.props; 
     const { isLoading } = this.state   
     const booked = notifications.some((notification) => {
@@ -51,15 +52,23 @@ class BookButton extends Component {
     if (attending) {
       return (
       <div className="button-container">
-        <button>Attending</button>
+        <button className="button green-button">Attending</button>
       </div>
       )
     }
-    return (
-    <div className="button-container">
-      <button className="button" onClick={this.handleClick}>Book</button>
-    </div>
-    )
+    if (seats > 0) {
+      return (
+      <div className="button-container">
+        <button className="button" onClick={this.handleClick}>Book</button>
+      </div>
+      )
+    } else {
+      return (
+      <div className="button-container">
+        <button className="button red-button">Full</button>
+      </div>
+      )
+    }
   }      
   
   render() {            

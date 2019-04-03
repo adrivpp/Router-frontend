@@ -5,7 +5,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto Oxygen-Sans,Ubuntu,Cantarell,“Fira Sans”,“Droid Sans”,Helvetica Neue,Helvetica,"\30D2\30E9\30AE\30CE\89D2\30B4 Pro W3",Hiragino Kaku Gothic Pro,"\30E1\30A4\30EA\30AA",Meiryo,"\FF2D\FF33 \FF30\30B4\30B7\30C3\30AF",Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
-  font-size: 12px;
+  font-size: 12px;  
   background: #FFFF;
 }
 html {
@@ -39,7 +39,6 @@ h1 {
   width: 100%;
   height: 100vh;
 }
-
 
 /* create page */
 .create {
@@ -98,24 +97,46 @@ option {
 }
 
 .travel-info {
-  height: 100vh;  
+  height: 90vh;    
 }
 
-.travel-activities-list {
-  overflow: scroll;
+.travel-act {
+  margin-top: 24vh; 
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10vh;
+}
+
+.activities-add {
+  position: fixed;
+  width: 100%;  
+  background: white;
+}
+
+.travel-activities-list {    
+  height: 320px;
+  margin-top: 50px;
+  overflow: scroll;   
+}
+
+.travel-activities-list ul {
+  height: 100%;
 }
 
 .info {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;  
-  margin-left: 20px;
+  margin-left: 20px;  
 }
 
 .info-card {
   padding: 15px; 
   display: flex;
   height: 20vh; 
+  position: fixed;
+  top: 0;
+  background: white;
 }
 
 .info-card img {
@@ -125,12 +146,14 @@ option {
 
 .button-container {
   position: fixed;
-  bottom: 0; 
+  bottom: 10vh; 
   width: 100%;
+  height: 10vh;
   justify-content: center;
   align-items: center;
-  padding-bottom: 20px;
-  background: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;  
 }
 
 /* travels card */
@@ -194,7 +217,7 @@ option {
   margin-bottom: 20px;
 }
 
-.search-bar input::placeholder {
+.search-bar input::placeholder, .activities-form input::placeholder {
   color: #8e8e8e;;  
   font-weight: 700
 }
@@ -228,6 +251,20 @@ option {
   white-space:nowrap
 }
 
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin-left: 20px;
+}
+
+li {
+  background: url('./images/camper.png') no-repeat left ;
+  background-size: 5%;
+  margin-bottom: 10px;
+  padding-left: 30px;
+  font-size: 14px;
+}
+
 .activities-form input {
   background: #EFEFEF;
   display: block;
@@ -236,6 +273,8 @@ option {
   border: none;
   height: 5vh;
   margin-bottom: 20px;
+  margin: 0;
+  height: 100%;
 }
 
 .activities-form {
@@ -243,12 +282,16 @@ option {
   width: 80%;
   margin: 0 auto;
   align-items: center;
-  height: 50px;
+  height: 40px;
 }
 
 .activities-form button {
   width: 20%; 
   height: 100%; 
+  border: none;
+  color: white;
+  letter-spacing: 0.5px;
+  background: rgba(0,170,198,1);
 }
 
 .activities-filter p {
@@ -490,16 +533,52 @@ hr {
 }
 
 /* notifications  */
-.notification-card {
-  
- 
+.notifications {
+  display: flex;   
+  padding: 20px;
+  flex-direction: column;
+  align-items: center;
+}
+
+.notifications-card {  
+  display: flex;    
+  justify-content: space-between;
+  margin-top: 20px;
+  align-items: center;
+  box-shadow: 0 -1px 6px #9999;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.notification-info {
+  width: 50%;
+}
+
+.not-img {
+  width: 30%;  
+}
+
+.not-img img {
+  width: 100%;
+  border-radius: 8px;
+}
+
+.notification-buttons {
+  display: flex;
+  margin-top: 20px;
+  justify-content: space-evenly;
 }
 
 .notifications {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-content: center;  
+  align-content: center;
+}
+
+.request {
+  border: none;
+  background: none;
 }
 
 .nav-bar-section {
@@ -524,8 +603,34 @@ img.spinner {
   100%{ left: 75% }
 }
 
-.green-button {
-  margin: 0 auto;
+.green-button {  
   border-radius: 2px;
-  background: rgb(187, 217, 140);;
+  background: #A5CC80;
 }
+
+.red-button {
+  border-radius: 2px;
+  background: #d9534f;
+}
+
+.error-container p {
+ color: white;
+}
+
+.hasError {
+  background: url('./images/background.jpg');
+  background-size: cover;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.agree i {
+  color: #A5CC80;
+}
+
+.deny i {
+  color: #d9534f;
+}
+

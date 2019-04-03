@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { withTravel } from '../providers/TravelsProvider';
 
+
 class ActivitiesForm extends Component {
   state = {
     activity: ''
@@ -23,8 +24,8 @@ class ActivitiesForm extends Component {
   render() {
     return (
       <form className="activities-form" onSubmit={this.handleSubmit}>
-        <input onChange={this.handleChange} required={true} type="text" name="activity" value={this.state.activity}/>
-        <button type="submit">add</button>
+        <input onChange={this.handleChange} required={true} type="text" name="activity" value={this.state.activity} placeholder="Add activities to your travel"/>
+        <button type="submit">Add</button>
       </form>
     );
   }

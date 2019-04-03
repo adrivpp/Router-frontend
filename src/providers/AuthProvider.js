@@ -33,7 +33,8 @@ export default class AuthProvider extends Component {
   state = {
     isLogged: false,
     user: {},
-    status: 'loading',        
+    status: 'loading', 
+    error: ''      
   }
 
   updateUser = () => {
@@ -62,17 +63,15 @@ export default class AuthProvider extends Component {
           user: {},
         });
       })
-      .catch(error => console.log(error))
+      .catch(err => err.response.data)
   }
 
   loginUser = (body) => {
     return authService.login(body)
       .then((user) => {
-        this.setUser(user);
+        this.setUser(user);       
       })
-      .catch(error => {
-        console.log(error)
-      })
+      .catch((err) => err.response.data) 
   }
 
   signupUser = (body) => {
@@ -80,13 +79,7 @@ export default class AuthProvider extends Component {
       .then((user) => {
         this.setUser(user);
       })
-      .catch((error) => {
-        console.log(error)
-        this.setState({
-          status: 'hasError'
-        })
-        return error         
-     })
+      .catch((err) => err.response.data)
   }
 
   componentDidMount() {
@@ -98,22 +91,21 @@ export default class AuthProvider extends Component {
           status: 'loaded'
         })
       })
-      .catch((error) => {
-        console.log(error)
+      .catch((error) => {        
         this.setState({ 
           isLogged: false,
-          user: {},
-          status: 'hasError'
+          user: {},   
+          status: 'loaded'       
         });
       })
   }
 
   render() {
-    const { isLogged, user, status } = this.state;
+    const { isLogged, user, status, error } = this.state;
     const { children } = this.props;
     switch (status) {
       case 'loading':
-        return <Loader/>
+        return <Loader/>     
       default:
         return (
           <Provider value={

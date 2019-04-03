@@ -20,15 +20,15 @@ class Navbar extends Component {
       return (    
         <section className="nav-bar-section">  
           <nav className="nav-bar">       
+            { isLogged ? <i onClick={logout} className="fas fa-sign-out-alt"></i> : null }
+            <Link to='/profile'><i className="far fa-user"></i></Link>
+            <Link to='/travels/new'><i className="fas fa-plus-circle"></i></Link>
+            <Link to='/travels'><i className="fas fa-search"></i></Link>
             {
             isLogged ?             
             <Link to={`/${user._id}/notifications`}><i className="far fa-bell" onClick={this.handleClick}>
             <Badge /></i></Link> :  null                 
             } 
-            <Link to='/travels'><i className="fas fa-search"></i></Link>
-            <Link to='/travels/new'><i className="fas fa-plus-circle"></i></Link>
-            <Link to='/profile'><i className="far fa-user"></i></Link>
-            { isLogged ? <i onClick={logout} className="fas fa-sign-out-alt"></i> : null }
           </nav>          
       </section>
       )                    

@@ -13,7 +13,7 @@ class Profile extends Component {
 
   state = {
     travelsOwned: [],
-    travels: []
+    travels: [],
   }
 
   componentDidMount() {    

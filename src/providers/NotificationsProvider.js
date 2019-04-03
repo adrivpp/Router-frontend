@@ -3,6 +3,7 @@ import travelService from '../lib/travel-service';
 import { withRouter } from 'react-router-dom';
 import Loader from '../components/Loader';
 export const NotificationContext = React.createContext();
+// import Error from '../components/Error';
 
 const { Provider, Consumer }  = NotificationContext;
 
@@ -72,7 +73,7 @@ class NotificationsProvider extends Component {
       case 'loading':
         return <Loader />
       case 'hasError':
-        return <p>error</p>   
+        return <p>error</p>
       default:        
       return (
         <Provider value={
