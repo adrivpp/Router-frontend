@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
 import { withTravel } from '../providers/TravelsProvider';
+import { withRouter } from 'react-router-dom';
 
 class TravelCard extends Component {
 
-  handleClick=() => {
-    console.log(this.props)
+  handleClikc =(id) => {
+    this.props.history.push(`/travels/${id}`)
   }
 
   render() {    
     const { _id, imageUrl, startPoint, endPoint, name } = this.props.travel
     return (
-      <div onClick={() => this.props.onDetails(_id)} className="card-container">
+      <div onClick={() => this.handleClikc(_id)} className="card-container">
         <img src={imageUrl} alt={name}></img>        
         <div className="card-info">         
           <h3>{name}</h3>
@@ -25,4 +26,4 @@ class TravelCard extends Component {
   }
 }
 
-export default withTravel(TravelCard);
+export default withRouter(withTravel(TravelCard));

@@ -28,9 +28,7 @@ class TravelProvider extends Component {
   state = {
     travels:  [],
     status: '',
-    search: '',
-    hasClick: false,
-    singleTravel: {},   
+    search: '',       
     activities: []    
   }  
 
@@ -57,22 +55,6 @@ class TravelProvider extends Component {
     })
   }
 
-  handleClose =() => {
-    this.setState({
-      hasClick: false
-    })        
-  } 
-
-  handleAdd =(id, activity) => {         
-    travelService.addActivities(id, activity)
-    .then((travel) => {     
-      this.setState({
-        singleTravel: travel
-      })
-      this.findAll()         
-    })
-  }
-
   handleActivities =(activity) => {    
     const filter = this.state.travels.filter((travel) => {
       return travel.activities.indexOf(activity) !== -1
@@ -82,37 +64,13 @@ class TravelProvider extends Component {
     })
   }
 
-  updateTravel =(id) => {
-    travelService.findOne(id) 
-      .then((travel) => {        
-        this.setState({          
-          singleTravel: travel,
-          status: 'loaded'
-        })
-      })
-      .catch(err => console.log(err))
-  }
-
-  handleClick =(id) => {       
-    travelService.findOne(id) 
-      .then((travel) => {
-        //this.props.history.push(`/travels/${id}`)
-        this.setState({
-          hasClick: true,
-          singleTravel: travel,
-          status: 'loaded'
-        })
-      })
-      .catch(err => console.log(err))
-  }
-  
   renderCard =(Comp) => {
     let filtered;
     this.state.search !== '' ? filtered = this.state.travels.filter((travel) => {           
       return travel.startPoint.toLowerCase().includes(this.state.search.toLowerCase())
     }) : filtered = this.state.travels;
     return filtered.map((travel, index) => {
-      return <Comp key={`id-${index}`} travel={travel} onDetails={this.handleClick}/>
+      return <Comp key={`id-${index}`} travel={travel} />
     })
   }
 
@@ -131,15 +89,10 @@ class TravelProvider extends Component {
               search,               
               hasClick, 
               singleTravel,
-              renderCard: this.renderCard, 
-              findOne: this.handleClick, 
-              filterActivity: this.handleActivities, 
-              close: this.handleClose, 
+              renderCard: this.renderCard,               
+              filterActivity: this.handleActivities,               
               onSearch: this.handleSearch, 
-              getAll: this.findAll,
-              addActivity: this.handleAdd,
-              handleDetails: this.handleClick,
-              updateTravel: this.updateTravel
+              getAll: this.findAll,                             
             }} >
             {this.props.children}
           </Provider>

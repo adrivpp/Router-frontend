@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import travelService from '../lib/travel-service';
 import { withAuth } from '../providers/AuthProvider';
 import { withTravel } from '../providers/TravelsProvider';
+import camper from '../images/camper.png';
 
 class BookButton extends Component {
 
@@ -15,13 +16,12 @@ class BookButton extends Component {
     })
     const { _id } = this.props.travel
     travelService.bookTrip(_id) 
-      .then(() => {      
-        this.setState({
-          isLoading: false
-        })
-        this.props.value.updateTravel(_id)
+      .then(() => {              
+        this.props.update(_id)
       })
-      .catch(err => console.log(err))
+      setTimeout(() => {
+        this.setState({isLoading: false})
+      }, 3000)
   }
 
   renderButton =() => {    
@@ -31,19 +31,36 @@ class BookButton extends Component {
     const booked = notifications.some((notification) => {
       return notification.request === user._id
     })
+    if (isLoading) {
+      return (
+        <div className="button-container">
+          <img src={camper} className="spinner" alt="spinner"/> 
+        </div>
+      )        
+    }
     if (booked && !isLoading) {
-      return <button>Booked</button>
+      return (
+        <div className="button-container">
+          <button className="button green-button">Booked</button>
+        </div>
+      )     
     }
     const attending = attendees.some((attendee) => {
       return attendee === user._id
     })
     if (attending) {
-      return <button >Attending</button>
+      return (
+      <div className="button-container">
+        <button>Attending</button>
+      </div>
+      )
     }
-    return <button className="button" onClick={this.handleClick}>{isLoading ? 'Loading' : 'book'}</button>
-  }
-    
-  
+    return (
+    <div className="button-container">
+      <button className="button" onClick={this.handleClick}>Book</button>
+    </div>
+    )
+  }      
   
   render() {            
     return (

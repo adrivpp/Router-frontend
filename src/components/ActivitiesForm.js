@@ -14,7 +14,7 @@ class ActivitiesForm extends Component {
 
   handleSubmit =(e) => {
     e.preventDefault();    
-    this.props.value.addActivity(this.props.id, this.state)
+    this.props.onAdd(this.props.id, this.state)
     this.setState({
       activity: ''
     })
@@ -22,7 +22,7 @@ class ActivitiesForm extends Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form className="activities-form" onSubmit={this.handleSubmit}>
         <input onChange={this.handleChange} required={true} type="text" name="activity" value={this.state.activity}/>
         <button type="submit">add</button>
       </form>

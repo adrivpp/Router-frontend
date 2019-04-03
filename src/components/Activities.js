@@ -8,7 +8,7 @@ class Activities extends Component {
 
   getRandomColor =() => {
     return "hsl(" + parseInt(256 * Math.random()) + "," +
-      "50%,"+
+      "60%,"+
       "70%,1)"
   }
 

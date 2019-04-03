@@ -5,11 +5,9 @@ class NotOwner extends Component {
   
   render() {
     const { user, travel } = this.props    
-    return (
-      <div>
-        {user._id !== travel.owner && this.props.children}
-      </div>
-      );
+    return (      
+      user._id !== travel.owner && this.props.children    
+    );
   }
 }
 

@@ -18,7 +18,7 @@ class TravelList extends Component {
   }  
 
   render() {          
-    const { renderCard, search, filterActivity, travels, hasClick, getAll } = this.props.value
+    const { renderCard, search, filterActivity, travels, getAll } = this.props.value
     return(
       <>
         <section className="travels-cotainer">
@@ -29,10 +29,7 @@ class TravelList extends Component {
           <section className="list-container">
             {renderCard(TravelCard)}
           </section>
-        </section>
-        <ShowDetails hasClick={hasClick}>
-          <TravelDetails/>
-        </ShowDetails>
+        </section>        
         <Navbar /> 
       </>
     )

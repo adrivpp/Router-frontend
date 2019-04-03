@@ -8,6 +8,10 @@
   background-position-x: center;  
 }
 
+.home-container .button {
+  margin-bottom: 7vh;
+}
+
 .brand {
   margin-top: 10vh;
 }

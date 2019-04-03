@@ -68,11 +68,11 @@ h1 {
   width: 70vw;
   height: 6vh;
   border-radius: 18px;
-  color: white;
-  margin-bottom: 7vh;
+  color: white;  
   border: none;
   font-size: 16px;
   font-weight: bold;
+  margin: 0 auto;
 }
 
 .create-button {
@@ -92,14 +92,45 @@ option {
 }
 
 /* travel details */
+
+.travel-info h2 {
+  text-align: center;
+}
+
 .travel-info {
-  background: white;
+  height: 100vh;  
+}
+
+.travel-activities-list {
+  overflow: scroll;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;  
+  margin-left: 20px;
+}
+
+.info-card {
+  padding: 15px; 
+  display: flex;
+  height: 20vh; 
+}
+
+.info-card img {
+  width: 50%;
+  border-radius: 8px;
+}
+
+.button-container {
   position: fixed;
-  bottom: 0;
-  min-height: 70vh;
-  width: 100vh;
-  border-radius: 30px 30px 0 0; 
-  box-shadow: 0px 0px 6px #999;
+  bottom: 0; 
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 20px;
+  background: white;
 }
 
 /* travels card */
@@ -195,6 +226,29 @@ option {
   overflow-x: scroll;
   overflow-y: hidden;  
   white-space:nowrap
+}
+
+.activities-form input {
+  background: #EFEFEF;
+  display: block;
+  width: 80%;
+  margin: 20px auto;  
+  border: none;
+  height: 5vh;
+  margin-bottom: 20px;
+}
+
+.activities-form {
+  display: flex;
+  width: 80%;
+  margin: 0 auto;
+  align-items: center;
+  height: 50px;
+}
+
+.activities-form button {
+  width: 20%; 
+  height: 100%; 
 }
 
 .activities-filter p {
@@ -450,4 +504,28 @@ hr {
 
 .nav-bar-section {
   position: relative;
+}
+
+img.spinner {
+  width: 50px;
+  height: 50px;    
+  position: absolute;
+  animation: run 3s linear;
+  bottom: 20px;
+}
+
+@keyframes run {
+  0% { left: 20%;}
+  20% {left: 35%}
+  40% {left: 45%;}
+  60%{ left : 55%;}
+  80%{ left: 65%;}
+  /* 90%{ left: 75%} */
+  100%{ left: 75% }
+}
+
+.green-button {
+  margin: 0 auto;
+  border-radius: 2px;
+  background: rgb(187, 217, 140);;
 }

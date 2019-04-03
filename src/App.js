@@ -12,8 +12,9 @@ import { Route } from 'react-router-dom';
 import CreateEvent from './pages/CreateEvent';
 import TravelList from './pages/TravelList';
 import Notifications from './pages/Notifications';
-import './App.css'
 import NotificationsProvider from './providers/NotificationsProvider';
+import TravelDetails from './pages/TravelDetails';
+import './App.css'
 
 
 class App extends Component {
@@ -29,7 +30,8 @@ class App extends Component {
             <NotificationsProvider>
               <TravelProvider>      
                 <PrivateRoute exact path="/profile" component={Profile} />              
-                <Route exact path="/travels" component={TravelList}/>                 
+                <Route exact path="/travels" component={TravelList}/>   
+                <Route exact path="/travels/:id" component={TravelDetails}/>           
               </TravelProvider>                      
               <PrivateRoute exact path="/:id/notifications" component={Notifications}/>
             </NotificationsProvider>
