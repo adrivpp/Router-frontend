@@ -65,10 +65,11 @@ class TravelProvider extends Component {
 
   handleAdd =(id, activity) => {         
     travelService.addActivities(id, activity)
-    .then((travel) => {                
+    .then((travel) => {     
       this.setState({
         singleTravel: travel
       })
+      this.findAll()         
     })
   }
 

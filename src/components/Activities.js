@@ -2,21 +2,37 @@ import React, { Component } from 'react';
 
 class Activities extends Component {
 
+  state = {
+    colors: []
+  }
+
   getRandomColor =() => {
     return "hsl(" + parseInt(256 * Math.random()) + "," +
-      "40%,"+
+      "50%,"+
       "70%,1)"
   }
 
-  renderList =() => {   
-    return this.props.travels.map((travel) => {
-      if (travel.activities.length) {
-        return travel.activities.map((act, index) => {
-          return <p onClick={()=>this.props.onActivity(act)} key={`id-${index}`} style={{backgroundColor: this.getRandomColor()}}>{act}</p>
-        })
-      }
-
+  randomColors =() => {
+    let colors = []
+    for(let i = 0; i < 100; i++ ) {
+      colors.push(this.getRandomColor())
+    }
+    this.setState({
+      colors,
     })
+  }
+
+  componentDidMount() {
+    this.randomColors()
+  }
+
+  renderList =() => {   
+    return this.props.travels.map((travel) => (
+      travel.activities.length ?
+        travel.activities.map((act, index) => (
+          <p onClick={()=>this.props.onActivity(act)} key={`id-${index}`} style={{backgroundColor: this.state.colors[index]}}>{act}</p>
+        )) : null      
+    ))
   }
 
   render() {

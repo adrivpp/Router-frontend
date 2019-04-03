@@ -5,35 +5,49 @@ import { withTravel } from '../providers/TravelsProvider';
 
 class BookButton extends Component {
 
+  state = {
+    isLoading: false,
+  }
+
   handleClick =() => {
+    this.setState({
+      isLoading: true
+    })
     const { _id } = this.props.travel
     travelService.bookTrip(_id) 
       .then(() => {      
+        this.setState({
+          isLoading: false
+        })
         this.props.value.updateTravel(_id)
       })
       .catch(err => console.log(err))
   }
 
-  checkUser =(element) => {    
-    const { user } = this.props
-    return element === user._id     
+  renderButton =() => {    
+    const { notifications, attendees } = this.props.travel;     
+    const { user } = this.props; 
+    const { isLoading } = this.state   
+    const booked = notifications.some((notification) => {
+      return notification.request === user._id
+    })
+    if (booked && !isLoading) {
+      return <button>Booked</button>
+    }
+    const attending = attendees.some((attendee) => {
+      return attendee === user._id
+    })
+    if (attending) {
+      return <button >Attending</button>
+    }
+    return <button className="button" onClick={this.handleClick}>{isLoading ? 'Loading' : 'book'}</button>
   }
-
-  // renderButton =() => {    
-  //   const { request, attendees } = this.props.travel     
-  //   if (request.some(this.checkUser)) {
-  //     return <p>travel booked</p>
-  //   } else if (attendees.some(this.checkUser)) {
-  //     return <p>Attending to this travel</p>
-  //   } else {
-  //     return <button className="button" onClick={this.handleClick}>Book travel</button>
-  //   }
     
-  // }
   
-  render() {        
+  
+  render() {            
     return (
-      <button className="button" onClick={this.handleClick}>Book travel</button>
+      this.renderButton()
     );
   }
 }
