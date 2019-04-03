@@ -18,7 +18,7 @@ class Profile extends Component {
 
   componentDidMount() {    
     travelService.findOwned()
-      .then((owned) => {        
+      .then((owned) => {               
         travelService.findTravelsBooked()
           .then((booked) =>{
             this.setState({

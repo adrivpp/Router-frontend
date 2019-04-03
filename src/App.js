@@ -13,6 +13,7 @@ import CreateEvent from './pages/CreateEvent';
 import TravelList from './pages/TravelList';
 import Notifications from './pages/Notifications';
 import './App.css'
+import NotificationsProvider from './providers/NotificationsProvider';
 
 
 class App extends Component {
@@ -25,12 +26,13 @@ class App extends Component {
             <AnonRoute exact path="/signup" component={Signup} />
             <AnonRoute exact path="/login" component={Login} />            
             <PrivateRoute exact path="/travels/new" component={CreateEvent}/> 
-            <PrivateRoute exact path="/:id/notifications" component={Notifications}/>
-            <TravelProvider>      
-              <PrivateRoute exact path="/profile" component={Profile} />              
-              <Route exact path="/travels" component={TravelList}/>   
-              {/* <Route exact path="/travels/:id" component={TravelDetails}/> */}
-            </TravelProvider>                      
+            <NotificationsProvider>
+              <TravelProvider>      
+                <PrivateRoute exact path="/profile" component={Profile} />              
+                <Route exact path="/travels" component={TravelList}/>                 
+              </TravelProvider>                      
+              <PrivateRoute exact path="/:id/notifications" component={Notifications}/>
+            </NotificationsProvider>
           </Switch>
         </div>
       </AuthProvider>

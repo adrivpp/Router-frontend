@@ -1,12 +1,27 @@
 import React from 'react';
+import { withNotifications } from '../providers/NotificationsProvider';
 
-const Badge =(props) => {  
-  if (props.children !== 0) {
+const Badge = (props) => {       
+    const { owned, requested } = props.value  
+    let counter = 0;
+    owned.forEach((travel) => {
+      travel.notifications.forEach((notification) => {
+        if (notification.status === 'Pending') {
+          counter +=1
+        }
+      })
+    })
+    requested.forEach((travel) => {
+      travel.notifications.forEach((notification) => {
+        if (notification.status !== 'Pending') {
+          counter += 1
+        }
+      })
+    })
     return (      
-      <p className="badge">{props.children}</p>      
-    );
+      counter > 0 ? 
+      <p className="badge">{counter}</p> : null
+    );    
   } 
-  return null
-}
 
-export default Badge;
+export default withNotifications(Badge);

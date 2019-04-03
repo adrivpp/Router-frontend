@@ -16,16 +16,14 @@ class Navbar extends Component {
   }     
 
   render() {                   
-    const { logout, isLogged, user } = this.props;           
+    const { logout, isLogged, user } = this.props;        
       return (    
         <section className="nav-bar-section">  
           <nav className="nav-bar">       
             {
-            isLogged ? 
-            
+            isLogged ?             
             <Link to={`/${user._id}/notifications`}><i className="far fa-bell" onClick={this.handleClick}>
-            <Badge>2</Badge></i></Link> :  null     
-            
+            <Badge /></i></Link> :  null                 
             } 
             <Link to='/travels'><i className="fas fa-search"></i></Link>
             <Link to='/travels/new'><i className="fas fa-plus-circle"></i></Link>
@@ -33,10 +31,8 @@ class Navbar extends Component {
             { isLogged ? <i onClick={logout} className="fas fa-sign-out-alt"></i> : null }
           </nav>          
       </section>
-      )              
-      
+      )                    
     }
-  }
-
+  } 
 
 export default withAuth(Navbar);
