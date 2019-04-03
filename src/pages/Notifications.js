@@ -85,9 +85,16 @@ class Notifications extends Component {
       return travel.notifications.map((notification, index) => {
         return (
           notification.status !== 'Pending' ? 
-          <div className="notificationCard" key={`id-${index}`}>          
-            <h3>{travel.owner.username} has {notification.status} your request</h3>
-            <button onClick={() => this.handleDelete(notification._id, travel._id)}>Ok</button>
+          <div className="notifications-card" key={`id-${index}`}>   
+            <div className="not-img">
+              <img src={travel.imageUrl} alt={travel.name}></img>
+            </div>       
+            <div className="notification-info">
+              <h3>{travel.owner.username} has {notification.status} your request</h3>
+              <div className="notification-buttons">  
+                <button className="request agree" onClick={() => this.handleDelete(notification._id, travel._id)}><i class="fas fa-check"></i></button>
+              </div>
+            </div>
           </div> : null
         )
       })
