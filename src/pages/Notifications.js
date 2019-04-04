@@ -102,9 +102,7 @@ class Notifications extends Component {
   }  
   
   render() {        
-    const { status } = this.state  
-    const { owned, requested } =this.props.value
-    console.log(owned.length, requested.length)
+    const { status } = this.state      
     switch (status) {      
       case 'hasError':
       return <Error/>       
