@@ -307,17 +307,20 @@ li {
 
 .activities-filter p {
   padding: 8px;  
-  color: white;
+  color: #EFEFEF;
   font-weight: 700;
   text-align: center;
   font-size: 14px;
   margin-right: 5px;
-  border-radius: 8px; 
+  border-radius: 8px;   
 }
 
 .all-tag {
-  background: #434343;
-  width: 84px;
+  background: #434343;  
+}
+
+p.all-tag {
+  min-width: 84px;
 }
 
 /* notifications  */

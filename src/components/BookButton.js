@@ -36,7 +36,7 @@ class BookButton extends Component {
       return (
         <div className="button-container">
           <img src={camper} className="spinner" alt="spinner"/> 
-        </div>
+        </div>        
       )        
     }
     if (booked && !isLoading) {

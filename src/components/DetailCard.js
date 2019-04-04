@@ -38,7 +38,7 @@ class DetailCard extends Component {
           <p><span className="bold">Hasta:</span> {endPoint}</p>          
         </div>
       </div>  
-      {/* <div className="travel-act">       */}
+      <div className="travel-act">      
         <Owner id={travel.owner}>
           <ActivitiesForm id={travel._id} onAdd={handleAdd}/>
             {/* <div className="container-button">
@@ -55,7 +55,7 @@ class DetailCard extends Component {
             <BookButton travel={travel} update={findSingle}/>
           </NotOwner>
         </div>
-      {/* </div> */}
+      </div>
       </>
     );
   }
