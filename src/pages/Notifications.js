@@ -67,7 +67,7 @@ class Notifications extends Component {
               <img src={travel.imageUrl} alt={travel.name}></img>
             </div>
             <div className="notification-info">
-              <h2>{notification.request.username} quiere viajar contigo</h2>                             
+              <h2><span className="link">{notification.request.username}</span> quiere viajar contigo</h2>                             
               <div className="notification-buttons">                      
                 <button className="request agree" onClick={() => this.handleAgree(travel._id, notification.request._id)}><i class="fas fa-check"></i></button>
                 <button className="request deny" onClick={() => this.handleDeny(travel._id, notification.request._id)}><i class="fas fa-times"></i></button>
@@ -90,9 +90,9 @@ class Notifications extends Component {
               <img src={travel.imageUrl} alt={travel.name}></img>
             </div>       
             <div className="notification-info">
-              <h3>{travel.owner.username} has {notification.status} your request</h3>
+              <h3><span className="link">{travel.owner.username}</span> has {notification.status} your request</h3>
               <div className="notification-buttons">  
-                <button className="request agree" onClick={() => this.handleDelete(notification._id, travel._id)}><i class="fas fa-check"></i></button>
+                <button className="request agree" onClick={() => this.handleDelete(notification._id, travel._id)}><i className="fas fa-check"></i></button>
               </div>
             </div>
           </div> : null

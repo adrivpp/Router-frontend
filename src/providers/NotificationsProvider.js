@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import travelService from '../lib/travel-service';
 import { withRouter } from 'react-router-dom';
 import Loader from '../components/Loader';
+import Error from '../components/Error';
 export const NotificationContext = React.createContext();
-// import Error from '../components/Error';
 
 const { Provider, Consumer }  = NotificationContext;
 
@@ -45,15 +45,13 @@ class NotificationsProvider extends Component {
           status: 'loaded'
         })
       })
-      .catch((err) =>  {
-        console.log(err)
+      .catch(() =>  {        
         this.setState({
           status: 'hasError'
         })
       })
     })
-    .catch((err) => {
-      console.log(err)
+    .catch(() => {      
       this.setState({
         status: 'hasError'
       })
@@ -73,7 +71,7 @@ class NotificationsProvider extends Component {
       case 'loading':
         return <Loader />
       case 'hasError':
-        return <p>error</p>
+        return <Error/>
       default:        
       return (
         <Provider value={

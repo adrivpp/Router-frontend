@@ -14,6 +14,7 @@ import TravelList from './pages/TravelList';
 import Notifications from './pages/Notifications';
 import NotificationsProvider from './providers/NotificationsProvider';
 import TravelDetails from './pages/TravelDetails';
+import NotFound from './pages/NotFound';
 import './App.css'
 
 
@@ -22,7 +23,7 @@ class App extends Component {
     return (
       <AuthProvider>
         <div className="container">         
-          <Switch>
+          <Switch>            
             <Route exact path="/" component={Home}/>            
             <AnonRoute exact path="/signup" component={Signup} />
             <AnonRoute exact path="/login" component={Login} />            
@@ -35,6 +36,7 @@ class App extends Component {
               </TravelProvider>                      
               <PrivateRoute exact path="/:id/notifications" component={Notifications}/>
             </NotificationsProvider>
+            <Route component={NotFound} /> 
           </Switch>
         </div>
       </AuthProvider>

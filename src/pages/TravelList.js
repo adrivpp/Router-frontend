@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import TravelCard from '../components/TravelCard';
-import TravelDetails from './TravelDetails';
-import ShowDetails from '../components/ShowDetails';
 import Navbar from '../components/Navbar';
 import Activities from '../components/Activities';
 import { withTravel } from '../providers/TravelsProvider';

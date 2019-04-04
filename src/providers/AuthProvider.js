@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
 import authService from '../lib/auth-service';
 import Loader from '../components/Loader';
+import Error from '../components/Error';
 
-export const AuthContext = React.createContext(
-  // authStore // default value
-);
+export const AuthContext = React.createContext();
 
 const { Provider, Consumer }  = AuthContext;
 
@@ -33,8 +32,7 @@ export default class AuthProvider extends Component {
   state = {
     isLogged: false,
     user: {},
-    status: 'loading', 
-    error: ''      
+    status: 'loading',        
   }
 
   updateUser = () => {
@@ -45,7 +43,11 @@ export default class AuthProvider extends Component {
         user,
       })
     })
-    .catch(error => console.log(error))
+    .catch((error) => {
+      this.setState({
+        status: 'hasError'
+      })
+    })
   }
 
   setUser = (user) => {
@@ -91,7 +93,7 @@ export default class AuthProvider extends Component {
           status: 'loaded'
         })
       })
-      .catch((error) => {        
+      .catch(() => {        
         this.setState({ 
           isLogged: false,
           user: {},   
@@ -101,11 +103,13 @@ export default class AuthProvider extends Component {
   }
 
   render() {
-    const { isLogged, user, status, error } = this.state;
+    const { isLogged, user, status } = this.state;
     const { children } = this.props;
     switch (status) {
       case 'loading':
-        return <Loader/>     
+        return <Loader/>  
+      case 'hasError':  
+      return <Error/>  
       default:
         return (
           <Provider value={

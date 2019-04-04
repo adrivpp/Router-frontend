@@ -4,12 +4,9 @@ import travelService from '../lib/travel-service';
 
 class CreateEvent extends Component {
 
-  handleSubmit =(travelData) => {        
-    travelService.create(travelData)
-    .then(() => {
-      return this.props.history.push('/profile');  
-    })
-    .catch(err => console.log(err))
+  handleSubmit = async (travelData) => {        
+    await travelService.create(travelData)    
+    return this.props.history.push('/profile');         
   }
 
   render() {

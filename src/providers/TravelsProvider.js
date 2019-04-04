@@ -36,13 +36,12 @@ class TravelProvider extends Component {
     travelService.findAll()
     .then((travels) => {
       this.setState({
-        travels: travels,
+        travels: travels.sort(() => -1),
         status: 'loaded', 
         hasClick: false,        
       })
     })
-    .catch((err) => {
-      console.log(err);
+    .catch(() => {      
       this.setState({
         status: 'hasError'
       })

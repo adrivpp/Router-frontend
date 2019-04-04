@@ -194,6 +194,7 @@ option {
   display: flex;  
   margin-top: 5px;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 #marker {
@@ -628,9 +629,24 @@ img.spinner {
  color: white;
 }
 
-.hasError {
-  background: url('./images/background.jpg');
+.has-error {
+  background-image: url('./images/background.jpg');
   background-size: cover;
+}
+
+.wrong {
+  background: white;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 24vh;
+  padding: 5vw;
+  align-items: center;
+}
+
+.wrong p {
+  text-align: center;
 }
 
 .bold {
@@ -643,5 +659,9 @@ img.spinner {
 
 .deny i {
   color: #d9534f;
+}
+
+.link {
+  color: rgba(0,174,198,1);
 }
 

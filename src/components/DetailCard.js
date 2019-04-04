@@ -18,7 +18,8 @@ class DetailCard extends Component {
   }
 
   renderList =() => {    
-    const { activities } = this.props.travel;        
+    const { activities } = this.props.travel;  
+    activities.sort(() => - 1)      
     if (activities.length > 0) {      
       return activities.map((activity, index) => {         
         return <li key={`id-${index}`}>{activity}</li>
