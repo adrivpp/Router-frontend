@@ -25,8 +25,8 @@ class DetailCard extends Component {
   } 
 
   render() {            
-    const { seats, startPoint, endPoint, imageUrl, name } = this.props.travel;
-    const { travel, findSingle, handleAdd, date } = this.props
+    const { seats, startPoint, endPoint, imageUrl, name, date } = this.props.travel;
+    const { travel, findSingle, handleAdd } = this.props
     return (
       <>
       <div className="info-card">               
@@ -35,11 +35,10 @@ class DetailCard extends Component {
           <h2>{name}</h2>   
           <p><span className="bold">Available seats:</span> {seats}</p>
           <p><span className="bold">Desde:</span> {startPoint}</p>
-          <p><span className="bold">Hasta:</span> {endPoint}</p>
-          <p><span className="bold">Date:</span>{date}</p>
+          <p><span className="bold">Hasta:</span> {endPoint}</p>          
         </div>
       </div>  
-      <div className="travel-act">      
+      {/* <div className="travel-act">       */}
         <Owner id={travel.owner}>
           <ActivitiesForm id={travel._id} onAdd={handleAdd}/>
             {/* <div className="container-button">
@@ -56,7 +55,7 @@ class DetailCard extends Component {
             <BookButton travel={travel} update={findSingle}/>
           </NotOwner>
         </div>
-      </div>
+      {/* </div> */}
       </>
     );
   }

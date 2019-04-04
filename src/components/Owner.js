@@ -5,7 +5,7 @@ class Owner extends Component {
   render() {  
     const { user, id } = this.props       
     return (
-      <div >
+      <div className="owner-div">
         {user._id === id && this.props.children}
       </div>
       );
