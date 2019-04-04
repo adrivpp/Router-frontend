@@ -306,8 +306,7 @@ li {
 }
 
 .activities-filter p {
-  padding: 8px;
-  min-width: 84px;
+  padding: 8px;  
   color: white;
   font-weight: 700;
   text-align: center;
@@ -318,6 +317,7 @@ li {
 
 .all-tag {
   background: #434343;
+  width: 84px;
 }
 
 /* notifications  */
