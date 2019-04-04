@@ -66,7 +66,7 @@ class CreateForm extends Component {
               {this.handleOptions()}            
             </select>
             <input className="input" onChange={this.handleChange} required={true} type="date" name="date" value={this.state.date}/>
-            <input className="input" onChange={this.handleChange} required={true} type="number" name="seats" Value={this.state.seats} placeholder="Available seats"/>
+            <input className="input" onChange={this.handleChange} required={true} type="number" name="seats" value={this.state.seats} placeholder="Available seats"/>
             <input className="input" onChange={this.handleChange} required={true} type="text" name="startPoint" value={this.state.startPoint} placeholder="Start point"/>
             <input className="input" onChange={this.handleChange} required={true} type="text" name="endPoint" value={this.state.endPoint} placeholder="End point"/>
             <button className="button create-button" type="submit">Create</button>

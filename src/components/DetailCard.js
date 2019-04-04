@@ -11,8 +11,10 @@ class DetailCard extends Component {
    
   handleClick = (id) => {
     travelService.delete(id)
-    .then({})
-    this.props.history.push('/travels')
+    .then(() => {    
+      this.props.value.getAll()
+      this.props.history.push('/profile')
+    })
   }
 
   renderList =() => {    
@@ -25,7 +27,7 @@ class DetailCard extends Component {
   } 
 
   render() {            
-    const { seats, startPoint, endPoint, imageUrl, name, date } = this.props.travel;
+    const { seats, startPoint, endPoint, imageUrl, name } = this.props.travel;
     const { travel, findSingle, handleAdd } = this.props
     return (
       <>
@@ -40,10 +42,7 @@ class DetailCard extends Component {
       </div>  
       <div className="travel-act">      
         <Owner id={travel.owner}>
-          <ActivitiesForm id={travel._id} onAdd={handleAdd}/>
-            {/* <div className="container-button">
-              <button onClick={this.handleClick(travel._id)} >Delete</button>
-            </div> */}
+          <ActivitiesForm id={travel._id} onAdd={handleAdd}/>            
         </Owner>   
           
           
@@ -51,6 +50,11 @@ class DetailCard extends Component {
           <ul>
             {this.renderList()}
           </ul>             
+          <Owner id={travel.owner}>
+            <div className="container-button">
+              <button className="button" onClick={()=>this.handleClick(travel._id)} >Delete</button>
+            </div>
+          </Owner>
           <NotOwner travel={travel}>
             <BookButton travel={travel} update={findSingle}/>
           </NotOwner>

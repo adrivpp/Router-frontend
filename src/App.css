@@ -124,13 +124,6 @@ option {
   overflow: scroll; 
 }
 
-.owner-div {
-  position: fixed;
-  background: white;
-  width: 100%;
-  top: 25vh;
-}
-
 .info {
   display: flex;
   flex-direction: column;
@@ -294,6 +287,10 @@ li {
   margin: 20px auto;
   align-items: center;
   height: 40px;
+  position: fixed;
+  background: white;
+  width: 100%;
+  top: 25vh;
 }
 
 .activities-form button {

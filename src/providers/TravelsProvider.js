@@ -32,7 +32,7 @@ class TravelProvider extends Component {
     activities: []    
   }  
 
-  findAll =() => {
+  findAll =() => {    
     travelService.findAll()
     .then((travels) => {
       this.setState({
