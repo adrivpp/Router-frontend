@@ -36,7 +36,7 @@ class App extends Component {
               </TravelProvider>                      
               <PrivateRoute exact path="/:id/notifications" component={Notifications}/>
             </NotificationsProvider>
-            <Route component={NotFound} /> 
+            <Route path="/" component={NotFound} /> 
           </Switch>
         </div>
       </AuthProvider>

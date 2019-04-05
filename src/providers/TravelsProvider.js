@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import travelService from '../lib/travel-service';
 import { withRouter } from 'react-router-dom';
 import Loader from '../components/Loader';
+import Error from '../components/Error';
 export const TravelContext = React.createContext();
 
 const { Provider, Consumer }  = TravelContext;
@@ -79,7 +80,7 @@ class TravelProvider extends Component {
       case 'loading':
         return <Loader/>
       case 'hasError': 
-        return <p>error</p>        
+        return <Error/>        
       default:
         return (
           <Provider value={
